@@ -4,129 +4,110 @@ Turns a form submission into a ready-to-use landing page folder (index.html,
 crm_connect.php, thanks.html, assets/) zipped up with a download link —
 no n8n, no third-party workflow tool. Just PHP on your own hosting.
 
-The generator now supports **multiple independent themes**. Each theme owns
-its own layout, sections, fields, styling and renderer. The core dispatcher
-(`generate.php`) and the frontend orchestrator (`core/app.js`) never contain
-theme-specific logic — adding a new theme means adding a new `themes/<id>/`
-folder, nothing else changes.
+The generator supports multiple independent themes. Each theme owns its own
+layout, sections, fields, styling and renderer. The core dispatcher
+(`generate.php`) and frontend orchestrator (`core/app.js`) remain theme-agnostic.
 
 ## Folder structure
 
 ```
 LP-Generator/
-├── index.html                    ← generator shell: theme selection + mount point
-├── landing-page-request.html     ← same file, alt name (kept for backward compatibility)
+├── index.html
+├── landing-page-request.html
 ├── core/
-│   ├── app.js                    ← theme-agnostic orchestrator (selection, mounting, live preview)
-│   └── app.css                   ← theme-agnostic chrome (topbar, selection grid, preview panel)
+│   ├── app.js
+│   └── app.css
 ├── themes/
-│   ├── registry.json             ← list of available themes shown on the selection screen
-│   ├── default/                  ← "Signature Real Estate" theme (the original generator)
-│   │   ├── theme.json            ← name/description/colors/sections shown on the selection card
+│   ├── registry.json
+│   ├── default/
+│   │   ├── theme.json
 │   │   ├── thumbnail.svg
-│   │   ├── form.html             ← this theme's field markup
-│   │   ├── form.css              ← this theme's form styling
-│   │   └── form.js               ← this theme's form logic + validation + submit + live-preview data
-│   └── palm-estate/              ← "Palm Estate" theme (converted from an uploaded design)
-│       └── (same file set as default/)
+│   │   ├── form.html
+│   │   ├── form.css
+│   │   ├── form.js
+│   │   ├── ai.js
+│   │   └── ai.css
+│   └── palm-estate/
 └── backend/
-    ├── generate.php              ← CORE DISPATCHER — theme-agnostic, do not add theme logic here
-    ├── core/
-    │   └── helpers.php           ← shared, theme-agnostic PHP utilities (zip, file copy, colors, gtag…)
-    ├── themes/
-    │   ├── default/
-    │   │   ├── config.php        ← theme metadata + required fields
-    │   │   ├── renderer.php      ← ALL of this theme's business logic (token filling, sections)
-    │   │   ├── template/         ← index-template.html, crm_connect-template.php, etc. (protected)
-    │   │   └── assets/           ← this theme's default css/js/fonts/images
-    │   └── palm-estate/
-    │       └── (same file set as default/)
+    ├── generate.php
+    ├── ai.php
+    ├── core/helpers.php
+    ├── themes/<id>/...
     └── output/
-        ├── submissions.csv       ← auto-created log of every request (shared across all themes)
-        └── zips/, previews/      ← generated .zip files + browsable previews (shared across all themes)
 ```
+
+## AI Content Assistant
+
+The default theme includes an **AI Content Assistant**. It sends a project brief
+to `backend/ai.php`, which calls the OpenAI Responses API from the server and
+returns structured landing-page content. The browser never receives the API key.
+
+Configure it with environment variables:
+
+```text
+OPENAI_API_KEY=your-server-side-key
+OPENAI_MODEL=gpt-5.5
+```
+
+For local PowerShell testing:
+
+```powershell
+$env:OPENAI_API_KEY="your-key"
+$env:OPENAI_MODEL="gpt-5.5"
+php -S localhost:8000
+```
+
+If the key is not configured, the normal non-AI generator continues to work.
+
+The AI assistant is intentionally constrained to facts supplied in the brief;
+it should not be used as a source of verified property prices, RERA details,
+distances, approvals, unit counts or other legal/commercial facts. Review the
+draft before applying it.
 
 ## Adding a new theme
 
-1. Copy `backend/themes/default/` to `backend/themes/<your-id>/` and copy
-   `themes/default/` (frontend) to `themes/<your-id>/`.
-2. Rewrite `template/index-template.html` with your own layout/sections and
-   `{{TOKEN}}` placeholders, and `renderer.php`'s `render_theme()` to build
-   and fill those tokens from your own `$_POST`/`$_FILES` fields.
-3. Rewrite `form.html` / `form.css` / `form.js` (`mount()`/`unmount()`) with
-   your own fields, matching the POST field names your `renderer.php` reads.
-4. Add an entry to `themes/registry.json`.
-5. Nothing in `generate.php`, `core/app.js`, `core/app.css`, or any other
-   theme's files needs to change.
+1. Copy the frontend and backend theme folders.
+2. Rewrite the theme form and renderer for your own fields.
+3. Add an entry to `themes/registry.json`.
+4. Optional capabilities can be provided as `ai.js` + `ai.css` exposing
+   `mountAi(container, ctx)`. The core shell will load them automatically.
 
-Optional: implement `getPreviewSummary()` in your `form.js` (same shape as
-the other themes) to power the generic live-preview panel — it's checked
-for at runtime, not required.
+## Live deployment
 
-## Live deployment (luxury-residences.online, GoDaddy cPanel)
+1. Upload the whole project to your hosting account.
+2. Fill each theme's `backend/themes/<id>/assets/` with real fallback assets.
+3. Configure SMTP sender details in each theme's template config.
+4. Ensure `backend/output/` is writable.
+5. Use PHP with the ZipArchive extension enabled.
+6. Set `OPENAI_API_KEY` only as a server environment variable if AI is enabled.
+7. Keep `backend/themes/` protected from direct web access.
 
-This copy is already configured for:
-```
-https://luxury-residences.online/LP-Generator/
-```
+## Request flow
 
-1. **Upload the whole `LP-generator/` folder** via cPanel → **File Manager**
-   (or FTP) into `public_html/LP-Generator/` — the folder name must match
-   exactly (Linux hosting is case-sensitive).
-2. **Fill in each theme's `backend/themes/<id>/assets/`** with your real,
-   unchanging files — fonts, and one default image per slot. These act as
-   fallback images if a visitor skips an upload.
-3. **Set your SMTP sender details** in each theme's
-   `backend/themes/<id>/template/config_smtp-template.php` — this is the
-   *sending* account, same for every generated page from that theme. It's
-   separate from the "Lead Email" field in the form, which is the
-   *recipient* address and does change per project.
-4. **Check folder permissions** — `backend/output/` (shared by every theme)
-   needs to be writable (755, or 775 on some hosts).
-5. **Confirm PHP version & ZipArchive** — PHP 7.4+ with the `zip` extension.
-6. **The webhook URL is centralized** — `core/app.js` points at
-   `backend/generate.php` (relative to wherever `index.html` is hosted).
-   Only change this constant if you move the backend to a different path.
-7. **First submission auto-creates `backend/output/`** along with the
-   `.htaccess` files that lock it down — no manual step needed.
+1. Select a theme.
+2. The theme's `form.js` renders its fields.
+3. Optionally use the AI assistant to draft structured content.
+4. The theme submits multipart form data to `backend/generate.php`.
+5. `generate.php` validates the theme and delegates to that theme's renderer.
+6. The renderer creates the generated page, preview and ZIP.
+7. The page registry powers **My Landing Pages** and edit-in-place behavior.
 
-## How a request flows through the backend
+## Security notes
 
-1. The person picks a theme on the selection screen; the theme's own
-   `form.js` renders that theme's fields.
-2. On submit, the theme module POSTs `multipart/form-data` (including a
-   `themeId` field) to `backend/generate.php`.
-3. `generate.php` (the core dispatcher) validates `themeId` against the
-   `backend/themes/` folder, creates the shared `output/` tree if needed,
-   and hands off to that theme's `renderer.php`.
-4. The theme's `render_theme()` validates its own required fields, creates
-   a temp working folder, copies that theme's static assets in, saves
-   uploaded images, builds its own dynamic HTML fragments, fills its own
-   `index-template.html` + `crm_connect-template.php` + `thanks.html`, zips
-   the result, writes a public preview copy, cleans up, logs the submission,
-   and returns a download link + preview link.
-5. `generate.php` JSON-encodes whatever the theme's renderer returned.
-
-## Security notes worth knowing
-- `backend/themes/.htaccess` blocks direct web access to the entire
-  `themes/` folder (templates, SMTP credentials, source assets) on Apache.
-  `output/.htaccess` and `output/zips/.htaccess` do the same for the shared
-  output folder — written automatically by `generate.php` on first run.
-- If your host uses Nginx instead of Apache, `.htaccess` files are ignored —
-  add equivalent `deny all;` rules for `/backend/themes/` and `/output/`
-  (excluding `/output/zips/` and `/output/previews/`) in your server block.
-- Only `.jpg`, `.jpeg`, `.png`, and `.webp` uploads are accepted per theme;
-  anything else is silently skipped rather than saved.
-- Consider adding a simple shared-secret header check in `generate.php` if
-  the form will be public, so random visitors can't spam-generate zips.
+- Never commit `.env` or real API keys.
+- `backend/ai.php` reads `OPENAI_API_KEY` only from the server environment.
+- Generated output and theme source should remain protected by server rules.
+- Image uploads should remain limited to the formats accepted by each theme.
+- For public deployments, consider an application-level rate limit or shared
+  secret for generation endpoints to prevent automated ZIP generation abuse.
+- If using Nginx, reproduce the Apache `.htaccess` access restrictions in the
+  Nginx server configuration.
 
 ## Troubleshooting
-- **"Could not create working directory"** → `output/` isn't writable; check
-  permissions.
-- **"Unknown or misconfigured theme"** → the `themeId` posted by the form
-  doesn't match a folder under `backend/themes/`, or that folder is missing
-  `renderer.php`/`template/`.
-- **Blank/500 response** → check your host's PHP error log; almost always
-  a missing `ZipArchive` extension or a file-permission issue.
-- **Download link 404s** → confirm `output/zips/.htaccess` uploaded correctly
-  and that your host allows `.htaccess` overrides (`AllowOverride All`).
+
+- **AI is not configured** → set `OPENAI_API_KEY` in the environment before starting PHP.
+- **AI request fails** → check outbound HTTPS access from PHP/cURL and the API key.
+- **Could not create working directory** → check `backend/output/` permissions.
+- **Unknown or misconfigured theme** → verify the `themeId` and backend theme folder.
+- **Blank/500 response** → inspect the PHP error log; ZipArchive and file permissions are common causes.
+- **Download link 404s** → verify the output access rules and hosting configuration.
