@@ -1,8 +1,8 @@
 <?php
-
-$cfg_server   = 'smtp.gmail.com';
-$cfg_port     =  587;
-$cfg_secure   = 'tls';
-$cfg_username = 'valuemultiplierdigital@gmail.com';
-$cfg_password = 'PASTE_YOUR_16_CHAR_APP_PASSWORD_HERE'; // see note below — NOT your normal Gmail password
-
+// SMTP credentials are intentionally read from server environment variables.
+// Never commit the real password to this repository.
+$cfg_server   = getenv('PROPERTY_MATRIMONY_SMTP_SERVER') ?: '';
+$cfg_port     = (int) (getenv('PROPERTY_MATRIMONY_SMTP_PORT') ?: 465);
+$cfg_secure   = getenv('PROPERTY_MATRIMONY_SMTP_SECURE') ?: 'ssl';
+$cfg_username = getenv('PROPERTY_MATRIMONY_SMTP_USERNAME') ?: '';
+$cfg_password = getenv('PROPERTY_MATRIMONY_SMTP_PASSWORD') ?: '';
