@@ -1,0 +1,26 @@
+{
+  "id": "default",
+  "name": "Signature Real Estate",
+  "tagline": "The original, full-featured project microsite",
+  "description": "Hero slider, pricing table, floor plans, photo gallery, amenities, location map, about-builder and full CRM/analytics wiring. The most complete theme, built for high-ticket residential/commercial launches.",
+  "sections": ["Hero Slider", "Highlights", "Pricing", "Floor Plans", "Gallery", "Amenities", "Location", "About Builder", "Contact / Enquiry"],
+  "navigation": [
+    { "label": "Home", "href": "#home" },
+    { "label": "Price", "href": "#pricing", "section": "price" },
+    { "label": "Site & Floor Plan", "href": "#sitefloorplan", "section": "floorplan" },
+    { "label": "Amenities", "href": "#amenities" },
+    { "label": "Gallery", "href": "#gallery", "section": "gallery" },
+    { "label": "Location", "href": "#location", "section": "location" },
+    { "label": "About Builder", "href": "#developer", "section": "developer" },
+    { "label": "Brochure", "href": "#", "action": "enquiryModal" }
+  ],
+  "colors": {
+    "primary": "#8a691c",
+    "secondary": "#3D3D3D",
+    "btnText": "#ffffff",
+    "card": "#eae5e4",
+    "overlay": "#1a1a1a"
+  },
+  "thumbnail": "thumbnail.svg",
+  "entry": "form.js"
+}

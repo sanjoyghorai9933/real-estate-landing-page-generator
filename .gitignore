@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+backend/output/previews/*
+backend/output/zips/*
+backend/output/submissions.csv
+
+.DS_Store
+Thumbs.db

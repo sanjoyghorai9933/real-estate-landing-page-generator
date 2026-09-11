@@ -1,0 +1,149 @@
+/* themes/riverside/form.css — this theme's own form styling.
+   Warm brass accent + dark ink, matches the theme's colorPrimary/colorSecondary defaults. */
+:root {
+    --rvP: #956543;
+    --rvInk: #1a1a1a;
+    --rvMuted: #757575;
+    --rvBorder: #e0e0e0;
+    --rvBg: #faf8f6;
+}
+#riversideForm, #rv_successScreen { font-family: Arial, Helvetica, sans-serif; color: var(--rvInk); }
+.rv-card {
+    background: #fff;
+    border: 1px solid var(--rvBorder);
+    border-left: 4px solid var(--rvP);
+    padding: 20px 20px 22px;
+    margin-bottom: 14px;
+}
+.rv-card h2 {
+    font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+    margin: 0 0 14px; display: flex; align-items: center; gap: 10px;
+}
+.rv-card h2 .rv-num {
+    background: var(--rvP); color: #fff; width: 22px; height: 22px;
+    font-size: 11.5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.rv-hint { font-size: 12.5px; color: var(--rvMuted); margin: -6px 0 10px; }
+.rv-field { margin-bottom: 12px; }
+.rv-field label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px; color: #444; text-transform: uppercase; letter-spacing: 0.2px; }
+#riversideForm input[type="text"],
+#riversideForm input[type="tel"],
+#riversideForm input[type="email"],
+#riversideForm input[type="url"],
+#riversideForm textarea {
+    width: 100%; padding: 11px 12px; border: 1px solid var(--rvBorder); border-radius: 0;
+    font-size: 14px; font-family: inherit; background: #fff; color: var(--rvInk);
+}
+#riversideForm textarea { min-height: 64px; resize: vertical; }
+#riversideForm input:focus, #riversideForm textarea:focus { outline: none; border-color: var(--rvP); }
+.rv-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rv-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media (max-width: 620px) { .rv-row2, .rv-row3 { grid-template-columns: 1fr; } }
+
+.rv-upload-box {
+    display: block; border: 1.5px dashed var(--rvBorder); padding: 14px;
+    text-align: center; cursor: pointer; position: relative; overflow: hidden;
+}
+.rv-upload-box:hover { border-color: var(--rvP); background: #faf3ec; }
+.rv-upload-box input { display: none; }
+.rv-upload-box .rv-label { font-size: 13px; font-weight: 700; }
+.rv-upload-box .rv-req { color: var(--rvP); }
+.rv-upload-box .rv-status { font-size: 11.5px; color: var(--rvMuted); margin-top: 4px; word-break: break-all; }
+.rv-upload-box img.rv-thumb { width: 100%; height: 90px; object-fit: cover; margin-bottom: 8px; }
+
+.rv-tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.rv-tag-list .rv-tag {
+    background: #f7f1ea; border: 1px solid var(--rvBorder); padding: 6px 12px;
+    font-size: 12.5px; display: flex; align-items: center; gap: 6px;
+}
+.rv-tag-list .rv-tag button { background: none; border: none; color: #999; cursor: pointer; font-size: 13px; }
+
+#riversideForm input.rv-tag-input {
+    width: 100%; padding: 11px 12px; border: 1px solid var(--rvBorder);
+    font-size: 14px; font-family: inherit;
+}
+
+/* Multi image + label grid (amenities / floor plan / gallery) */
+.rv-multi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+@media (max-width: 560px) { .rv-multi-grid { grid-template-columns: repeat(2, 1fr); } }
+.rv-multi-grid .rv-mitem { position: relative; border: 1px solid var(--rvBorder); padding: 4px; }
+.rv-multi-grid .rv-mitem img { width: 100%; height: 72px; object-fit: cover; display: block; margin-bottom: 4px; }
+.rv-multi-grid .rv-mitem input.rv-mlabel {
+    width: 100%; border: 1px solid var(--rvBorder); font-size: 11.5px; padding: 4px 5px; font-family: inherit;
+}
+.rv-multi-grid .rv-mitem .rv-mremove {
+    position: absolute; top: 4px; right: 4px; background: rgba(255,255,255,0.9); border: none;
+    width: 20px; height: 20px; font-size: 12px; cursor: pointer; color: #c0392b; z-index: 2;
+}
+
+/* Repeatable rows (hero badges / price rows) */
+.rv-rows { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.rv-row-item { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 8px; align-items: center; }
+.rv-row-item.rv-row-2 { grid-template-columns: 1fr 1fr auto; }
+@media (max-width: 620px) { .rv-row-item, .rv-row-item.rv-row-2 { grid-template-columns: 1fr; } }
+.rv-row-item input { padding: 9px 10px; border: 1px solid var(--rvBorder); font-size: 13.5px; font-family: inherit; }
+.rv-row-remove {
+    background: none; border: 1px solid var(--rvBorder); color: #c0392b; cursor: pointer;
+    width: 32px; height: 32px; font-size: 14px; flex-shrink: 0;
+}
+.rv-add-row-btn {
+    background: none; border: 1px dashed var(--rvP); color: var(--rvP); font-weight: 700;
+    font-size: 12.5px; text-transform: uppercase; padding: 9px 14px; cursor: pointer; margin-top: 10px;
+}
+
+.rv-color-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rv-color-field { border: 1px solid var(--rvBorder); padding: 10px; text-align: center; background: var(--rvBg); }
+.rv-color-field label { font-size: 12px; margin-bottom: 8px; }
+.rv-color-field input[type="color"] { width: 100%; height: 40px; border: 1px solid var(--rvBorder); padding: 2px; cursor: pointer; background: #fff; }
+
+.rv-error-msg {
+    display: none; background: #fdecea; color: #b23b3b; border: 1px solid #f3c6c1;
+    padding: 12px 14px; font-size: 13px; margin-bottom: 14px;
+}
+.rv-submit-btn {
+    display: block; width: 100%; background: var(--rvP); color: #fff; border: none;
+    padding: 15px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    cursor: pointer; text-align: center; text-decoration: none;
+}
+.rv-submit-btn:disabled { opacity: .6; cursor: default; }
+
+#rv_successScreen { text-align: center; padding: 40px 16px; }
+#rv_successScreen .rv-check {
+    width: 60px; height: 60px; border-radius: 50%; background: var(--rvP); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 18px;
+}
+#rv_successScreen h2 { font-size: 20px; margin: 0 0 8px; }
+#rv_successScreen p { color: var(--rvMuted); font-size: 14px; }
+#rv_successScreen .rv-ref { font-weight: 700; color: var(--rvInk); }
+#rv_successScreen .rv-submit-btn { margin-top: 14px; max-width: 320px; margin-left: auto; margin-right: auto; }
+.rv-links { margin-top: 14px; }
+.rv-link-btn {
+    background: none; border: 1px solid var(--rvBorder); padding: 10px 16px;
+    color: var(--rvP); font-weight: 700; font-size: 13px; cursor: pointer; margin: 0 6px; text-transform: uppercase;
+}
+.rv-link-btn.rv-underline { border: none; text-decoration: underline; }
+
+/* ---------- Section picker (nav-driven show/hide) ---------- */
+.rv-section-picker { position: relative; margin-bottom: 14px; }
+.rv-section-picker-btn {
+    width: 100%; text-align: left; background: #fff; border: 1px solid var(--rvBorder);
+    border-left: 4px solid var(--rvP); border-radius: 0; padding: 14px 15px; font-size: 13px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: var(--rvInk);
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit;
+}
+.rv-section-picker-btn .rv-chev { transition: transform 0.2s; color: var(--rvP); }
+.rv-section-picker-btn.rv-open .rv-chev { transform: rotate(180deg); }
+.rv-section-picker-panel {
+    display: none; position: absolute; left: 0; right: 0; top: calc(100% + 4px);
+    background: #fff; border: 1px solid var(--rvBorder); box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    padding: 6px; z-index: 20;
+}
+.rv-section-picker-panel.rv-open { display: block; }
+.rv-section-picker-panel label {
+    display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600;
+    text-transform: none; color: var(--rvInk); padding: 9px 8px; margin: 0; cursor: pointer;
+}
+.rv-section-picker-panel label:hover { background: var(--rvBg); }
+.rv-section-picker-panel input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--rvP); }
+.rv-section-picker-panel .rv-locked { opacity: 0.6; cursor: not-allowed; }
+.rv-section-hidden { display: none !important; }

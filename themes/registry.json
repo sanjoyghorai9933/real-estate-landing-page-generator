@@ -1,0 +1,49 @@
+[
+  {
+    "id": "default",
+    "name": "Signature Real Estate",
+    "tagline": "The original, full-featured project microsite",
+    "sections": ["Hero Slider", "Pricing", "Floor Plans", "Gallery", "Amenities", "Location"],
+    "navigation": [
+      { "label": "Home", "href": "#home" },
+      { "label": "Price", "href": "#pricing", "section": "price" },
+      { "label": "Site & Floor Plan", "href": "#sitefloorplan", "section": "floorplan" },
+      { "label": "Amenities", "href": "#amenities" },
+      { "label": "Gallery", "href": "#gallery", "section": "gallery" },
+      { "label": "Location", "href": "#location", "section": "location" },
+      { "label": "About Builder", "href": "#developer", "section": "developer" },
+      { "label": "Brochure", "href": "#", "action": "enquiryModal" }
+    ],
+    "thumbnail": "thumbnail.jpg"
+  },
+  {
+    "id": "palm-estate",
+    "name": "Palm Estate",
+    "tagline": "Bold, image-led luxury villa microsite",
+    "sections": ["Hero Banner", "About", "Amenities", "Location", "Gallery", "About Builder", "Contact"],
+    "navigation": [
+      { "label": "Overview", "href": "#about" },
+      { "label": "Amenities", "href": "#amenities" },
+      { "label": "Gallery", "href": "#photo-gallery" },
+      { "label": "Location", "href": "#location" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "thumbnail": "thumbnail.jpg"
+  },
+  {
+    "id": "riverside",
+    "name": "Riverside Residences",
+    "tagline": "Content-rich, image-led luxury residences microsite",
+    "sections": ["Hero Slider", "Overview", "Highlights", "Amenities", "Price List", "Floor Plan", "Master Plan", "Gallery", "Virtual Tour", "Location", "About Developer", "Contact"],
+    "navigation": [
+      { "label": "Highlight", "href": "#highlight", "section": "highlight" },
+      { "label": "Amenities", "href": "#amenities", "section": "amenities" },
+      { "label": "Price List", "href": "#price-list", "section": "price" },
+      { "label": "Floor Plan", "href": "#floor-plan", "section": "floorplan" },
+      { "label": "Gallery", "href": "#gallery", "section": "gallery" },
+      { "label": "Location", "href": "#location", "section": "location" },
+      { "label": "Contact Us", "href": "#contact-us" }
+    ],
+    "thumbnail": "thumbnail.jpg"
+  }
+]

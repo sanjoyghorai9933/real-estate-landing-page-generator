@@ -1,0 +1,253 @@
+<!-- themes/riverside/form.html
+     Field set for the Riverside Residences theme: hero slider, overview,
+     highlights, amenities, price list, floor plan, master plan, gallery,
+     virtual tour, location, about developer, contact — matches
+     backend/themes/riverside/renderer.php's $_POST/$_FILES contract. -->
+<form id="riversideForm" novalidate>
+
+    <!-- SECTION PICKER: choose which optional sections to include -->
+    <div class="rv-section-picker">
+        <button type="button" class="rv-section-picker-btn" id="rv_sectionPickerBtn">
+            <span id="rv_sectionPickerLabel">Which sections do you want on your page?</span>
+            <span class="rv-chev">&#9662;</span>
+        </button>
+        <div class="rv-section-picker-panel" id="rv_sectionPickerPanel">
+            <label class="rv-locked"><input type="checkbox" checked disabled> Overview (always included)</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="highlights" checked> Highlights</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="amenities" checked> Amenities</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="price" checked> Price List</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="floorplan" checked> Floor Plan</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="masterplan" checked> Master Plan</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="gallery" checked> Gallery</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="virtualtour" checked> Virtual Tour</label>
+            <label><input type="checkbox" class="rv-section-toggle" data-section="location" checked> Location</label>
+            <label class="rv-locked"><input type="checkbox" checked disabled> Contact (always included)</label>
+        </div>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">1</span> Project &amp; Hero Slider</h2>
+        <div class="rv-field">
+            <label for="rv_projectName">Project Name *</label>
+            <input type="text" id="rv_projectName" required placeholder="e.g. Riverside Residences" />
+        </div>
+        <div class="rv-field">
+            <label for="rv_locationTagline">Location Tagline *</label>
+            <input type="text" id="rv_locationTagline" required placeholder="e.g. Whitefield, Bangalore" />
+        </div>
+        <div class="rv-field">
+            <label for="rv_heroSubtitle">Hero Subtitle</label>
+            <input type="text" id="rv_heroSubtitle" placeholder="e.g. Premium 3 & 4 BHK Riverfront Residences" />
+        </div>
+        <div class="rv-field">
+            <label for="rv_priceText">Starting Price *</label>
+            <input type="text" id="rv_priceText" required placeholder="e.g. 1.2 Cr Onwards" />
+        </div>
+        <div class="rv-field">
+            <label>Hero Slider Images * <span class="rv-hint" style="display:inline;">(one or more)</span></label>
+            <input type="file" accept="image/*" multiple id="rv_heroImages" />
+            <div class="rv-multi-grid" id="rv_heroGrid"></div>
+        </div>
+        <div class="rv-field">
+            <label>Logo (optional)</label>
+            <label class="rv-upload-box" id="rv_logoBox">
+                <input type="file" accept="image/*" id="rv_logo" />
+                <div class="rv-label">Logo</div>
+                <div class="rv-status" id="rv_logoStatus">Tap to choose photo</div>
+            </label>
+        </div>
+        <div class="rv-hint">Up to 3 hero badges (e.g. Type / Location / Possession) shown over the slider.</div>
+        <div class="rv-rows" id="rv_heroBadgeRows"></div>
+        <button type="button" class="rv-add-row-btn" id="rv_addHeroBadge">+ Add Hero Badge</button>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">2</span> Overview</h2>
+        <div class="rv-field">
+            <label>Overview Image</label>
+            <label class="rv-upload-box" id="rv_overviewBox">
+                <input type="file" accept="image/*" id="rv_overviewImage" />
+                <div class="rv-label">Overview Image</div>
+                <div class="rv-status" id="rv_overviewStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+        <div class="rv-field">
+            <label for="rv_overviewText">Overview Text</label>
+            <textarea id="rv_overviewText" placeholder="Leave blank for a sensible default paragraph"></textarea>
+        </div>
+    </div>
+
+    <div class="rv-card" data-section="highlights">
+        <h2><span class="rv-num">3</span> Highlights</h2>
+        <p class="rv-hint">Add highlight lines — press Enter after each one.</p>
+        <input type="text" class="rv-tag-input" id="rv_highlightInput" placeholder="Type a highlight and press Enter" />
+        <div class="rv-tag-list" id="rv_highlightTags"></div>
+        <div class="rv-field" style="margin-top:14px;">
+            <label>Highlight Image</label>
+            <label class="rv-upload-box" id="rv_highlightBox">
+                <input type="file" accept="image/*" id="rv_highlightImage" />
+                <div class="rv-label">Highlight Image</div>
+                <div class="rv-status" id="rv_highlightStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+    </div>
+
+    <div class="rv-card" data-section="amenities">
+        <h2><span class="rv-num">4</span> Amenities</h2>
+        <p class="rv-hint">Upload amenity photos with a short label each. Leave empty and a default list is used.</p>
+        <input type="file" accept="image/*" multiple id="rv_amenityInput" />
+        <div class="rv-multi-grid" id="rv_amenityGrid"></div>
+    </div>
+
+    <div class="rv-card" data-section="price">
+        <h2><span class="rv-num">5</span> Price List</h2>
+        <p class="rv-hint">Add unit type, size and price rows.</p>
+        <div class="rv-rows" id="rv_priceRows"></div>
+        <button type="button" class="rv-add-row-btn" id="rv_addPriceRow">+ Add Price Row</button>
+    </div>
+
+    <div class="rv-card" data-section="floorplan">
+        <h2><span class="rv-num">6</span> Floor Plan</h2>
+        <p class="rv-hint">Upload floor plan images with a short label each. Leave empty and a default set is used.</p>
+        <input type="file" accept="image/*" multiple id="rv_floorplanInput" />
+        <div class="rv-multi-grid" id="rv_floorplanGrid"></div>
+    </div>
+
+    <div class="rv-card" data-section="masterplan">
+        <h2><span class="rv-num">7</span> Master Plan</h2>
+        <div class="rv-field">
+            <label>Master Plan Image</label>
+            <label class="rv-upload-box" id="rv_masterplanBox">
+                <input type="file" accept="image/*" id="rv_masterplanImage" />
+                <div class="rv-label">Master Plan Image</div>
+                <div class="rv-status" id="rv_masterplanStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+    </div>
+
+    <div class="rv-card" data-section="gallery">
+        <h2><span class="rv-num">8</span> Gallery</h2>
+        <p class="rv-hint">Upload gallery photos with an optional caption each. Leave empty and a default set is used.</p>
+        <input type="file" accept="image/*" multiple id="rv_galleryInput" />
+        <div class="rv-multi-grid" id="rv_galleryGrid"></div>
+    </div>
+
+    <div class="rv-card" data-section="virtualtour">
+        <h2><span class="rv-num">9</span> Virtual Tour</h2>
+        <div class="rv-field">
+            <label for="rv_virtualTourEmbedUrl">Virtual Tour Embed URL</label>
+            <input type="url" id="rv_virtualTourEmbedUrl" placeholder="https://... (leave blank to skip this section)" />
+        </div>
+    </div>
+
+    <div class="rv-card" data-section="location">
+        <h2><span class="rv-num">10</span> Location</h2>
+        <div class="rv-field">
+            <label>Location Image</label>
+            <label class="rv-upload-box" id="rv_locationBox">
+                <input type="file" accept="image/*" id="rv_locationImage" />
+                <div class="rv-label">Location Image</div>
+                <div class="rv-status" id="rv_locationStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+        <p class="rv-hint">Add nearby connectivity/location advantages — press Enter after each one.</p>
+        <input type="text" class="rv-tag-input" id="rv_locationAdvInput" placeholder="Type an advantage and press Enter" />
+        <div class="rv-tag-list" id="rv_locationAdvTags"></div>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">11</span> About Developer</h2>
+        <div class="rv-field">
+            <label for="rv_aboutDeveloperText">About Developer Text</label>
+            <textarea id="rv_aboutDeveloperText" placeholder="Leave blank for a sensible default paragraph"></textarea>
+        </div>
+        <div class="rv-field">
+            <label for="rv_footerDisclaimerText">Footer Disclaimer</label>
+            <textarea id="rv_footerDisclaimerText" placeholder="Leave blank for the standard disclaimer text"></textarea>
+        </div>
+        <div class="rv-field">
+            <label for="rv_whatsappLink">WhatsApp Link</label>
+            <input type="url" id="rv_whatsappLink" placeholder="https://wa.me/91XXXXXXXXXX" />
+        </div>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">12</span> Contact &amp; Leads</h2>
+        <div class="rv-row2">
+            <div class="rv-field">
+                <label for="rv_phone">Phone Number *</label>
+                <input type="tel" id="rv_phone" required placeholder="e.g. 98765 43210" />
+            </div>
+            <div class="rv-field">
+                <label for="rv_toEmail">Lead Email *</label>
+                <input type="email" id="rv_toEmail" required placeholder="leads@yourcompany.com" />
+            </div>
+        </div>
+        <div class="rv-row2">
+            <div class="rv-field">
+                <label for="rv_ccEmail">CC Email</label>
+                <input type="email" id="rv_ccEmail" placeholder="optional" />
+            </div>
+            <div class="rv-field">
+                <label for="rv_bccEmail">BCC Email</label>
+                <input type="email" id="rv_bccEmail" placeholder="optional" />
+            </div>
+        </div>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">13</span> SEO (optional)</h2>
+        <div class="rv-field">
+            <label for="rv_metaDescription">Meta Description</label>
+            <textarea id="rv_metaDescription" placeholder="Shown in search engine results"></textarea>
+        </div>
+        <div class="rv-field">
+            <label for="rv_metaKeywords">Meta Keywords</label>
+            <input type="text" id="rv_metaKeywords" placeholder="comma, separated, keywords" />
+        </div>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">14</span> Colors</h2>
+        <div class="rv-color-grid">
+            <div class="rv-color-field">
+                <label for="rv_colorPrimary">Primary</label>
+                <input type="color" id="rv_colorPrimary" value="#956543" />
+            </div>
+            <div class="rv-color-field">
+                <label for="rv_colorSecondary">Secondary</label>
+                <input type="color" id="rv_colorSecondary" value="#1a1a1a" />
+            </div>
+        </div>
+    </div>
+
+    <div class="rv-card">
+        <h2><span class="rv-num">15</span> Analytics (optional)</h2>
+        <div class="rv-row2">
+            <div class="rv-field">
+                <label for="rv_gtagId">Google Tag ID</label>
+                <input type="text" id="rv_gtagId" placeholder="G-ABC1234" />
+            </div>
+            <div class="rv-field">
+                <label for="rv_conversionSendTo">Conversion Send-To</label>
+                <input type="text" id="rv_conversionSendTo" placeholder="AW-1234567890/AbC..." />
+            </div>
+        </div>
+    </div>
+
+    <div class="rv-error-msg" id="rv_formError">Please fill in all required fields marked with *.</div>
+    <button type="submit" class="rv-submit-btn" id="rv_submitBtn">Submit Request</button>
+</form>
+
+<div id="rv_successScreen" style="display:none;">
+    <div class="rv-check">&#10003;</div>
+    <h2 id="rv_successTitle">Request submitted!</h2>
+    <p id="rv_successMsg">We're generating your landing page now.</p>
+    <p class="rv-ref" id="rv_refNumber"></p>
+    <a href="#" id="rv_previewBtn" target="_blank" style="display:none;" class="rv-submit-btn">&#128065; Preview Landing Page</a>
+    <a href="#" id="rv_downloadBtn" target="_blank" style="display:none;" class="rv-submit-btn">&#8681; Download Landing Page (.zip)</a>
+    <p class="rv-links">
+        <button type="button" id="rv_editDetailsBtn" class="rv-link-btn">&#9998; Edit details</button>
+        <button type="button" id="rv_startOverBtn" class="rv-link-btn rv-underline">Create another landing page</button>
+    </p>
+</div>

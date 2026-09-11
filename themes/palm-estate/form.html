@@ -1,0 +1,204 @@
+<!-- themes/palm-estate/form.html
+     Field set for the Palm Estate theme: hero banner, about, feature stats,
+     amenities, location, gallery, about-builder, contact — its own
+     section list, distinct from the Default theme. -->
+<form id="palmForm" novalidate>
+
+    <!-- SECTION PICKER: choose which nav sections to include; matching cards below show/hide -->
+    <div class="pe-section-picker">
+        <button type="button" class="pe-section-picker-btn" id="pe_sectionPickerBtn">
+            <span id="pe_sectionPickerLabel">Which sections do you want on your page?</span>
+            <span class="pe-chev">&#9662;</span>
+        </button>
+        <div class="pe-section-picker-panel" id="pe_sectionPickerPanel">
+            <label class="pe-locked"><input type="checkbox" checked disabled> Overview (always included)</label>
+            <label><input type="checkbox" class="pe-section-toggle" data-section="amenities" checked> Amenities</label>
+            <label><input type="checkbox" class="pe-section-toggle" data-section="gallery" checked> Gallery</label>
+            <label class="pe-locked"><input type="checkbox" checked disabled> Location (always included)</label>
+            <label><input type="checkbox" class="pe-section-toggle" data-section="builder" checked> About Builder</label>
+            <label class="pe-locked"><input type="checkbox" checked disabled> Contact (always included)</label>
+        </div>
+    </div>
+
+    <div class="pe-card">
+        <h2><span class="pe-num">1</span> Project &amp; Hero Banner</h2>
+        <div class="pe-field">
+            <label for="pe_projectName">Project Name *</label>
+            <input type="text" id="pe_projectName" required placeholder="e.g. The Meadow Villas" />
+        </div>
+        <div class="pe-field">
+            <label for="pe_locationTagline">Location Tagline *</label>
+            <input type="text" id="pe_locationTagline" required placeholder="e.g. Sarjapur Road, Bangalore" />
+        </div>
+        <div class="pe-field">
+            <label for="pe_heroSubtitle">Hero Subtitle</label>
+            <input type="text" id="pe_heroSubtitle" placeholder="e.g. Luxurious Ready to Move 4 & 5 BHK Villas" />
+        </div>
+        <div class="pe-field">
+            <label for="pe_priceText">Starting Price *</label>
+            <input type="text" id="pe_priceText" required placeholder="e.g. 3.5 Cr Onwards" />
+        </div>
+        <div class="pe-field">
+            <label>Hero Banner Image *</label>
+            <label class="pe-upload-box" id="pe_heroBox">
+                <input type="file" accept="image/*" id="pe_heroImage" />
+                <div class="pe-label">Hero Banner <span class="pe-req">*</span></div>
+                <div class="pe-status" id="pe_heroStatus">Tap to choose photo</div>
+            </label>
+        </div>
+        <div class="pe-field">
+            <label>Developer Logo (optional)</label>
+            <label class="pe-upload-box" id="pe_logoBox">
+                <input type="file" accept="image/*" id="pe_logo" />
+                <div class="pe-label">Developer Logo</div>
+                <div class="pe-status" id="pe_logoStatus">Tap to choose photo</div>
+            </label>
+        </div>
+    </div>
+
+    <div class="pe-card">
+        <h2><span class="pe-num">2</span> About</h2>
+        <div class="pe-field">
+            <label>About Image</label>
+            <label class="pe-upload-box" id="pe_aboutBox">
+                <input type="file" accept="image/*" id="pe_aboutImage" />
+                <div class="pe-label">About Image</div>
+                <div class="pe-status" id="pe_aboutStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+        <div class="pe-field">
+            <label for="pe_aboutText">About Text</label>
+            <textarea id="pe_aboutText" placeholder="A short description of the project"></textarea>
+        </div>
+        <div class="pe-row3">
+            <div class="pe-field">
+                <label for="pe_featureType">Type</label>
+                <input type="text" id="pe_featureType" placeholder="Residential" />
+            </div>
+            <div class="pe-field">
+                <label for="pe_featureLocation">Feature Location</label>
+                <input type="text" id="pe_featureLocation" placeholder="Same as tagline if blank" />
+            </div>
+            <div class="pe-field">
+                <label for="pe_featurePossession">Possession</label>
+                <input type="text" id="pe_featurePossession" placeholder="Ready to Move" />
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-card" data-section="amenities">
+        <h2><span class="pe-num">3</span> Amenities</h2>
+        <p class="pe-hint">Add amenity names — press Enter after each one. Leave empty and a default list is used.</p>
+        <input type="text" id="pe_amenityInput" placeholder="Type an amenity and press Enter" />
+        <div class="pe-tag-list" id="pe_amenityTags"></div>
+    </div>
+
+    <div class="pe-card">
+        <h2><span class="pe-num">4</span> Location &amp; Gallery</h2>
+        <div class="pe-field">
+            <label>Location Photo</label>
+            <label class="pe-upload-box" id="pe_locationBox">
+                <input type="file" accept="image/*" id="pe_locationImage" />
+                <div class="pe-label">Location Photo</div>
+                <div class="pe-status" id="pe_locationStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+        <div class="pe-field" data-section="gallery">
+            <label>Gallery Photos</label>
+            <input type="file" accept="image/*" multiple id="pe_galleryInput" />
+            <div class="pe-gallery-grid" id="pe_galleryGrid"></div>
+        </div>
+    </div>
+
+    <div class="pe-card" data-section="builder">
+        <h2><span class="pe-num">5</span> About the Builder</h2>
+        <div class="pe-field">
+            <label>Builder Image</label>
+            <label class="pe-upload-box" id="pe_builderBox">
+                <input type="file" accept="image/*" id="pe_builderImage" />
+                <div class="pe-label">Builder Image</div>
+                <div class="pe-status" id="pe_builderStatus">Tap to choose photo (optional)</div>
+            </label>
+        </div>
+        <div class="pe-field">
+            <label for="pe_builderHeading">Heading</label>
+            <input type="text" id="pe_builderHeading" placeholder="About the Builder" />
+        </div>
+        <div class="pe-field">
+            <label for="pe_builderText">Builder Text</label>
+            <textarea id="pe_builderText" placeholder="A short paragraph about the developer"></textarea>
+        </div>
+    </div>
+
+    <div class="pe-card">
+        <h2><span class="pe-num">6</span> Contact &amp; Leads</h2>
+        <div class="pe-row2">
+            <div class="pe-field">
+                <label for="pe_phone">Phone Number *</label>
+                <input type="tel" id="pe_phone" required placeholder="e.g. 98765 43210" />
+            </div>
+            <div class="pe-field">
+                <label for="pe_toEmail">Lead Email *</label>
+                <input type="email" id="pe_toEmail" required placeholder="leads@yourcompany.com" />
+            </div>
+        </div>
+        <div class="pe-row2">
+            <div class="pe-field">
+                <label for="pe_ccEmail">CC Email</label>
+                <input type="email" id="pe_ccEmail" placeholder="optional" />
+            </div>
+            <div class="pe-field">
+                <label for="pe_bccEmail">BCC Email</label>
+                <input type="email" id="pe_bccEmail" placeholder="optional" />
+            </div>
+        </div>
+        <div class="pe-field">
+            <label for="pe_addressBlock">Corporate Office Address</label>
+            <textarea id="pe_addressBlock" placeholder="Shown in the Contact section"></textarea>
+        </div>
+    </div>
+
+    <div class="pe-card">
+        <h2><span class="pe-num">7</span> Colors</h2>
+        <div class="pe-color-grid">
+            <div class="pe-color-field">
+                <label for="pe_colorPrimary">Primary</label>
+                <input type="color" id="pe_colorPrimary" value="#0c5848" />
+            </div>
+            <div class="pe-color-field">
+                <label for="pe_colorSecondary">Secondary</label>
+                <input type="color" id="pe_colorSecondary" value="#000000" />
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-card">
+        <h2><span class="pe-num">8</span> Analytics (optional)</h2>
+        <div class="pe-row2">
+            <div class="pe-field">
+                <label for="pe_gtagId">Google Tag ID</label>
+                <input type="text" id="pe_gtagId" placeholder="G-ABC1234" />
+            </div>
+            <div class="pe-field">
+                <label for="pe_conversionSendTo">Conversion Send-To</label>
+                <input type="text" id="pe_conversionSendTo" placeholder="AW-1234567890/AbC..." />
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-error-msg" id="pe_formError">Please fill in all required fields marked with *.</div>
+    <button type="submit" class="pe-submit-btn" id="pe_submitBtn">Submit Request</button>
+</form>
+
+<div id="pe_successScreen" style="display:none;">
+    <div class="pe-check">&#10003;</div>
+    <h2 id="pe_successTitle">Request submitted!</h2>
+    <p id="pe_successMsg">We're generating your landing page now.</p>
+    <p class="pe-ref" id="pe_refNumber"></p>
+    <a href="#" id="pe_previewBtn" target="_blank" style="display:none;" class="pe-submit-btn">&#128065; Preview Landing Page</a>
+    <a href="#" id="pe_downloadBtn" target="_blank" style="display:none;" class="pe-submit-btn">&#8681; Download Landing Page (.zip)</a>
+    <p class="pe-links">
+        <button type="button" id="pe_editDetailsBtn" class="pe-link-btn">&#9998; Edit details</button>
+        <button type="button" id="pe_startOverBtn" class="pe-link-btn pe-underline">Create another landing page</button>
+    </p>
+</div>

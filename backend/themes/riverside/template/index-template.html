@@ -1,0 +1,985 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PAGE_TITLE}}</title>
+
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="keywords" content="{{META_KEYWORDS}}">
+  <meta name="robots" content="index, follow">
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root { --brand-color: {{COLOR_PRIMARY}}; --primary-color: {{COLOR_PRIMARY}}; --secondary-color: {{COLOR_SECONDARY}}; }
+    .icon-next::before { content: "\2192"; font-family: inherit; }
+  </style>
+
+<!-- Google tag (gtag.js) — filled in per-project, blank if not configured -->
+{{GTAG_HEAD_SNIPPET}}
+
+  <style>
+    .price_section,
+    .price_section::before {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .floating-whatsapp img.imgwhatsapp,
+    img.imgwhatsapp {
+      width: 3%;
+      max-width: 100%;
+      position: fixed;
+      bottom: 40px;
+      left: 40px;
+    }
+
+    body,
+    html {
+      overflow-x: hidden;
+    }
+
+    /* Lock page scroll while a Bootstrap modal is open */
+    body.modal-open {
+      overflow: hidden !important;
+    }
+
+    .iti {
+      width: 100%;
+    }
+
+    .contact_section .iti--separate-dial-code .iti__selected-flag {
+      background-color: rgb(255 255 255) !important;
+    }
+
+    .d-view {
+      display: block;
+    }
+
+    .m-view {
+      display: none;
+    }
+
+    .item_wrap.item-height {
+      height: 418px;
+    }
+
+    .flashmessageContent h5 {
+      text-align: center;
+    }
+
+    .price h2 {
+      font-size: 28px;
+    }
+
+    .item_wrap .price.blurred h2 {
+      transition: filter .3s;
+    }
+
+    .flashmessageBox {
+      width: 20%;
+      font-size: 12px;
+      background-color: #000000b8;
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 11;
+    }
+
+    .flashmessage button {
+      background: 0 0;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #fff;
+      float: right;
+      margin-top: -6px;
+    }
+
+    .flashmessageContent {
+      flex-grow: 1;
+      margin-right: 10px;
+      margin-top: 14px;
+    }
+
+    .closeButtonFlash {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .blurtext {
+      filter: blur(6px);
+    }
+
+    img.imgwhatsapp {
+      z-index: 11;
+    }
+
+    .price_section {
+      position: relative;
+    }
+
+    .price_section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .5;
+      z-index: 0;
+    }
+
+    .text-colour {
+      color: #fff !important;
+    }
+
+    .price_section .item_wrap:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+    }
+
+    .floating-whatsapp img.imgwhatsapp {
+      z-index: 9999;
+      animation: 1.2s ease-in-out infinite whatsapp-blink;
+      cursor: pointer;
+    }
+
+    img.dolphin-image {
+      position: absolute;
+      right: 3%;
+      bottom: 0;
+      width: 17%;
+      opacity: .7;
+    }
+
+    @media (max-width:767px) {
+      .d-view {
+        display: none;
+      }
+
+      .m-view {
+        display: block;
+      }
+    }
+
+    @media (max-width:768px) {
+
+      .floating-whatsapp img.imgwhatsapp,
+      img.dolphin-image,
+      img.imgwhatsapp {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container site-wrap">
+      <div class="header-wrapper">
+        <div class="header-left">
+          <div class="header-logo">
+            <a class="navbar-brand" href="#">
+              <img src="assets/img/logo.png" alt="{{PROJECT_NAME}} logo" class="img-fluid developer-logo-img">
+            </a>
+          </div>
+        </div>
+        <div class="header-center">
+          <div id="primary-menu" class="menu-wrapper">
+            <div class="mobile-menu__brand">
+              <img src="assets/img/logo.png" alt="{{PROJECT_NAME}}" class="mobile-menu__logo">
+              <p class="mobile-menu__tagline">{{PROJECT_NAME}}</p>
+            </div>
+            <div class="mobile-menu__nav">
+              <p class="mobile-menu__heading">Menu</p>
+              <ul class="navbar-nav mobile-nav-list">
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#overview">
+                    <span class="mobile-nav-item__label">Overview</span>
+                  </a>
+                </li>
+<!--SECTION:HIGHLIGHT_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#highlight">
+                    <span class="mobile-nav-item__label">Highlight</span>
+                  </a>
+                </li>
+<!--SECTION:HIGHLIGHT_END-->
+<!--SECTION:AMENITIES_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#amenities">
+                    <span class="mobile-nav-item__label">Amenities</span>
+                  </a>
+                </li>
+<!--SECTION:AMENITIES_END-->
+<!--SECTION:PRICE_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#price-list">
+                    <span class="mobile-nav-item__label">Price List</span>
+                  </a>
+                </li>
+<!--SECTION:PRICE_END-->
+<!--SECTION:FLOORPLAN_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#floor-plan">
+                    <span class="mobile-nav-item__label">Floor Plan</span>
+                  </a>
+                </li>
+<!--SECTION:FLOORPLAN_END-->
+<!--SECTION:GALLERY_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#gallery">
+                    <span class="mobile-nav-item__label">Gallery</span>
+                  </a>
+                </li>
+<!--SECTION:GALLERY_END-->
+<!--SECTION:LOCATION_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#location">
+                    <span class="mobile-nav-item__label">Location</span>
+                  </a>
+                </li>
+<!--SECTION:LOCATION_END-->
+<!--SECTION:ABOUTDEVELOPER_START-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#about-developer">
+                    <span class="mobile-nav-item__label">About Developer</span>
+                  </a>
+                </li>
+<!--SECTION:ABOUTDEVELOPER_END-->
+                <li class="nav-item">
+                  <a class="nav-link mobile-nav-item" href="#contact-us">
+                    <span class="mobile-nav-item__label">Contact Us</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <a class="mobile-menu__cta" href="{{PHONE_TEL}}" aria-label="Call now">
+              <span class="mobile-menu__cta-icon" aria-hidden="true">&#9742;</span>
+              <span class="mobile-menu__cta-text">
+                <span class="mobile-menu__cta-label">Call Now</span>
+                <span class="mobile-menu__cta-number">{{PHONE_DISPLAY}}</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="mobile-trigger">
+          <i class="fa fa-bars"></i>
+        </div>
+        <div class="header-right">
+          <a class="header_button pulse-button" href="{{PHONE_TEL}}" aria-label="Call now">
+            {{PHONE_DISPLAY}}
+          </a>
+        </div>
+      </div>
+  </div></header>
+  <!-- header section end here -->
+
+  <!-- Banner Section start here -->
+  <section id="carouselExampleCaptions" class="carousel slide carousel-fade banner_section hero-banner" data-interval="5000" data-pause="false" data-wrap="true">
+    <div class="mobBanner" aria-hidden="true">
+      <img src="assets/img/{{HERO_FIRST_IMAGE}}" alt="{{PROJECT_NAME}}">
+    </div>
+    <div class="carousel-inner">
+{{HERO_SLIDER_ITEMS}}
+    </div>
+
+    <div class="hero-banner__carousel-nav" role="group" aria-label="Carousel navigation">
+      <button type="button" class="hero-banner__carousel-btn" data-target="#carouselExampleCaptions" data-slide="prev" aria-label="Previous slide">
+        <svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <span class="hero-banner__carousel-divider" aria-hidden="true"></span>
+      <button type="button" class="hero-banner__carousel-btn" data-target="#carouselExampleCaptions" data-slide="next" aria-label="Next slide">
+        <svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="hero-banner__shell">
+      <div class="hero-banner__inner site-wrap">
+        <div class="hero-banner__main">
+          <div class="hero-banner__layout">
+            <p class="hero-banner__location hero-banner__location--vertical">
+              <span class="hero-banner__location-text">{{LOCATION_TAGLINE}}</span>
+            </p>
+            <span class="hero-banner__rail-line" aria-hidden="true"></span>
+            <div class="hero-banner__content">
+              <h1 class="hero-banner__title">{{PROJECT_NAME}}</h1>
+              <p class="hero-banner__subtitle">{{HERO_SUBTITLE}}</p>
+
+              <ul class="hero-banner__badges hero-banner__badges--list">
+{{HERO_BADGES_HTML}}
+              </ul>
+
+              <p class="hero-banner__price">Price Starts From Just <span>{{PRICE_TEXT}}</span></p>
+
+              <div class="hero-banner__cta banner_btn banner_btn--hero">
+                <button type="button" data-toggle="modal" data-target="#exampleModal1">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-banner__aside right_form">
+          <div class="hero-form-card form_sec">
+            <div class="hero-form-card__head">
+              <p class="hero-form-card__label">Limited Inventory</p>
+              <h2 class="form_title">Enquire Now</h2>
+            </div>
+            <form class="form_section" id="form1" action="crm_connect.php" method="POST">
+              <input type="hidden" name="message" id="msgField1" value="Hero form enquiry">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name" name="name" id="qSenderName2" required="">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email Address" name="email" id="qEmailID2" required="">
+              </div>
+              <div class="form-group">
+                <input type="text" id="phone1" class="form-control phone-input" name="phone" placeholder="Mobile Number" inputmode="numeric" pattern="\d{10}" autocomplete="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required="">
+              </div>
+              <div class="form-group hero-captcha-row" style="display:flex;align-items:center;gap:10px;">
+                <span id="captchaSum1"></span>
+                <input required type="text" id="captchaAnswer1" class="form-control" placeholder="Answer" style="max-width:110px;">
+                <input type="hidden" name="token" id="captchaToken1">
+              </div>
+              <div class="form-group">
+                <button class="btn main_button" id="send" type="submit">Get Best Price</button>
+              </div>
+              <div class="inp-box banner-form-consent-row">
+                <input type="checkbox" checked="">
+                <p class="inp-txt banner-form-consent-txt">I agree to be contacted via Call, SMS, Email, or WhatsApp,
+                  overriding DNC/NDNC.</p>
+              </div>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <ol class="carousel-indicators hero-banner__dots">
+{{HERO_SLIDER_INDICATORS}}
+    </ol>
+  </section>
+  <!-- Banner Section end here -->
+
+  <!-- overview section start here -->
+  <div class="overview ptb overview--classic" id="overview" data-name="Overview">
+    <div class="container site-wrap">
+      <div class="title_section ov-classic__section-head">
+        <h4 class="pro_title">Overview</h4>
+      </div>
+      <div class="row align-items-stretch ov-classic">
+        <div class="col-lg-6">
+          <div class="ov-classic__visual">
+            <div class="ov-classic__showcase">
+              <span class="ov-classic__showcase-accent" aria-hidden="true"></span>
+              <figure class="ov-classic__figure">
+                <img src="assets/img/{{OVERVIEW_IMAGE}}" alt="{{PROJECT_NAME}}">
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="content_section ov-classic__content">
+            <div class="title_section">
+              <h3 class="title">{{PROJECT_NAME}}</h3>
+              <p class="ov-classic__location">
+                <span class="ov-classic__location-icon" aria-hidden="true">
+                  <svg width="11" height="11" viewbox="0 0 24 24" fill="currentColor" focusable="false">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"></path>
+                  </svg>
+                </span>
+                {{LOCATION_TAGLINE}}
+              </p>
+            </div>
+
+            {{OVERVIEW_TEXT_HTML}}
+
+            <div class="banner_btn ov-classic__cta">
+              <button type="button" data-toggle="modal" data-target="#exampleModal1">
+                Download Brochure <i class="icon-next"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- overview section end here -->
+
+  <!-- highlight section start here -->
+<!--SECTION:HIGHLIGHT_START-->
+  <div class="highlight_section highlight--grid" id="highlight" data-name="Highlight">
+    <div class="container site-wrap">
+      <div class="title_section hl-grid__section-head">
+        <h4 class="pro_title">Highlights</h4>
+      </div>
+
+      <div class="hl-split">
+        <div class="hl-split__content">
+          <div class="hl-split__panel">
+            <h3 class="hl-split__title">Project Highlights of {{PROJECT_NAME}}</h3>
+
+            <ul class="hl-split__grid">
+{{HIGHLIGHTS_HTML}}
+            </ul>
+          </div>
+        </div>
+        <div class="hl-split__media">
+          <div class="hl-split__showcase">
+            <span class="hl-split__accent" aria-hidden="true"></span>
+            <figure class="hl-split__figure">
+              <img src="assets/img/{{HIGHLIGHT_IMAGE}}" alt="{{PROJECT_NAME}}" width="640" height="800" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- highlight section ends here -->
+<!--SECTION:HIGHLIGHT_END-->
+
+  <!-- amenities section start here -->
+<!--SECTION:AMENITIES_START-->
+  <section class="amenities-container" id="amenities">
+    <div class="wrapper">
+
+      <div class="head">
+        <span class="common-title">Luxury Lifestyle</span>
+        <h2>World-Class Amenities</h2>
+      </div>
+
+      <div class="gridAme">
+{{AMENITIES_HTML}}
+      </div>
+
+    </div>
+  </section>
+  <!-- amenities section ends here -->
+<!--SECTION:AMENITIES_END-->
+
+  <!-- price section start here -->
+<!--SECTION:PRICE_START-->
+  <div class="price_section ptb price--plans" id="price-list" data-name="Price List">
+    <div class="container site-wrap">
+      <div class="title_section price-plans__head">
+        <h4 class="pro_title">Price List</h4>
+        <p class="price-plans__subtitle">{{PROJECT_NAME}} {{LOCATION_TAGLINE}}</p>
+      </div>
+
+      <div class="price-plans__grid">
+{{PRICE_CARDS_HTML}}
+      </div>
+    </div>
+  </div>
+  <!-- price section ends here -->
+<!--SECTION:PRICE_END-->
+
+  <!-- floorplan section start here -->
+  <!-- floorplan section start here -->
+<!--SECTION:FLOORPLAN_START-->
+  <div class="floor_plan ptb floor--showcase" id="floor-plan" data-name="Floor Plan">
+    <div class="container site-wrap">
+      <div class="title_section floor-show__head">
+        <h4 class="pro_title">Floor Plan</h4>
+        <p class="floor-show__subtitle">{{PROJECT_NAME}} {{LOCATION_TAGLINE}}</p>
+      </div>
+
+      <div class="floor-show__grid">
+{{FLOORPLAN_CARDS_HTML}}
+      </div>
+    </div>
+  </div>
+  <!-- floorplan section ends here -->
+<!--SECTION:FLOORPLAN_END-->
+
+  <!-- Master Plan section start here -->
+<!--SECTION:MASTERPLAN_START-->
+  <div class="master_plan ptb master--showcase" id="master-plan" data-name="Master Plan">
+    <div class="container site-wrap">
+      <div class="title_section master-show__head">
+        <h4 class="pro_title">Master Plan</h4>
+      </div>
+
+      <div class="master-show__single">
+        <article class="master-card">
+          <div class="master-card__thumb">
+            <img src="assets/img/{{MASTERPLAN_IMAGE}}" alt="Master Plan — {{PROJECT_NAME}}" loading="lazy" decoding="async">
+          </div>
+          <div class="master-card__block">
+            <span class="master-card__label">Plan Type</span>
+            <span class="master-card__detail">Master Plan</span>
+          </div>
+          <div class="master-card__cta">
+            <button type="button" data-toggle="modal" data-target="#exampleModal1">Know More</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- Master Plan section ends here -->
+<!--SECTION:MASTERPLAN_END-->
+
+  <!-- gallery section Start here -->
+  <!-- gallery section start here -->
+<!--SECTION:GALLERY_START-->
+  <div class="gallery_section ptb gallery--showcase" id="gallery">
+    <div class="container site-wrap">
+      <div class="title_section gallery-show__head">
+        <h4 class="pro_title">Gallery</h4>
+      </div>
+
+      <div class="gallery-show__grid">
+{{GALLERY_HTML}}
+      </div>
+    </div>
+  </div>
+  <!-- gallery section End here -->
+<!--SECTION:GALLERY_END-->
+
+  <!-- Virtual Tour section start here -->
+<!--SECTION:VIRTUALTOUR_START-->
+  <div class="virtual_tour_section ptb virtual-tour--showcase" id="virtual-tour">
+    <div class="container site-wrap">
+      <div class="vtour-show__head title_section text-center">
+        <h4 class="pro_title">Virtual Tour</h4>
+        <h3 class="title">Some Homes Deserve to Be Experienced, Not Just Seen</h3>
+      </div>
+
+      <div class="vtour-show__frame">
+        <div class="vtour-show__player virtual_tour_video_wrap">
+          <iframe class="vtour-show__video" src="{{VIRTUAL_TOUR_EMBED_URL}}" title="{{PROJECT_NAME}} virtual walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Virtual Tour section end here -->
+<!--SECTION:VIRTUALTOUR_END-->
+
+  <!-- location section start here -->
+  <!-- location section start here -->
+<!--SECTION:LOCATION_START-->
+  <div class="location_section ptb location--showcase" id="location">
+    <div class="container site-wrap">
+      <div class="title_section loc-show__section-head">
+        <h4 class="pro_title">Location</h4>
+      </div>
+
+      <div class="loc-show">
+        <div class="loc-show__map">
+          <div class="loc-show__map-frame">
+            <div class="loc-show__map-embed">
+              <img src="assets/img/{{LOCATION_IMAGE}}" alt="{{PROJECT_NAME}} map — {{LOCATION_TAGLINE}}" loading="lazy" decoding="async" class="loc-show__map-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="loc-show__panel loc-show__panel--brand">
+          <div class="loc-show__head">
+            <h3 class="loc-show__panel-title">Connectivity Highlights</h3>
+            <p class="loc-show__panel-desc">{{LOCATION_TAGLINE}}</p>
+          </div>
+
+          <ul class="loc-connect">
+{{LOCATION_ADVANTAGES_HTML}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- location section end here -->
+<!--SECTION:LOCATION_END-->
+
+  <!-- contact section start here -->
+  <div class="contact_section ptb-40 contact--showcase" id="contact-us">
+    <div class="container site-wrap">
+      <div class="dev-show">
+<!--SECTION:ABOUTDEVELOPER_START-->
+        <div class="dev-show__about left_sec" id="about-developer">
+          <div class="title_section dev-show__head">
+            <h4 class="pro_title">About the Developer</h4>
+          </div>
+
+          <div class="dev-show__content content">
+{{ABOUT_DEVELOPER_TEXT_HTML}}
+          </div>
+        </div>
+<!--SECTION:ABOUTDEVELOPER_END-->
+
+        <div class="dev-show__form footer_form right_form">
+          <div class="form_sec dev-form__card">
+            <span class="dev-form__tag">Get in Touch</span>
+            <h2 class="form_title dev-form__title">Enquire Now</h2>
+            <form class="form_section" id="form2" action="crm_connect.php" method="POST">
+              <input type="hidden" name="message" id="msgField2" value="Contact section enquiry">
+              <div class="form-group">
+                <label class="dev-form__label" for="qSenderName3">Full Name</label>
+                <input type="text" class="form-control" placeholder="Enter Name" name="name" id="qSenderName3" required="">
+              </div>
+              <div class="form-group">
+                <label class="dev-form__label" for="qEmailID3">Email</label>
+                <input type="email" class="form-control" placeholder="Enter Email" name="email" id="qEmailID3" required="">
+              </div>
+              <div class="form-group">
+                <label class="dev-form__label" for="phone2">Mobile</label>
+                <input type="text" id="phone2" class="form-control phone-input" name="phone" placeholder="Enter number" inputmode="numeric" pattern="\d{10}" autocomplete="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required="">
+              </div>
+              <div class="form-group" style="display:flex;align-items:center;gap:10px;">
+                <span id="captchaSum2"></span>
+                <input required type="text" id="captchaAnswer2" class="form-control" placeholder="Answer" style="max-width:110px;">
+                <input type="hidden" name="token" id="captchaToken2">
+              </div>
+              <div class="form-group">
+                <button class="btn main_button" id="send" type="submit">Submit Now</button>
+              </div>
+              <div class="inp-box dev-form__consent">
+                <input type="checkbox" checked="">
+                <p class="inp-txt">I authorize company representatives to Call, SMS, Email or WhatsApp me about its
+                  products and offers. This consent overrides any registration for DNC/NDNC.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- contact section end here -->
+
+  <!-- footer section start here -->
+  <footer class="footer footer--showcase">
+    <div class="footer-show__rera">
+      <div class="site-wrap">
+        <div class="footer-show__rera-inner">
+          <span class="footer-show__rera-badge">RERA Registered</span>
+          <span class="footer-show__rera-item"><strong>HARERA Registration No.</strong> GGM/945/677/2025/48</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-wrap">
+      <div class="footer-show inner-footer-bottom">
+        <div class="footer-show__top">
+          <div class="footer-show__brand">
+            <img src="assets/img/logo.png" alt="{{PROJECT_NAME}}" class="footer-show__logo">
+            <p class="footer-show__tagline">{{PROJECT_NAME}} · {{LOCATION_TAGLINE}}</p>
+          </div>
+          <nav class="footer-show__links" aria-label="Legal">
+            <a href="privacypolicy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a href="Disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+          </nav>
+        </div>
+
+        <div class="footer-show__disclaimer box">
+          <h6 class="footer-show__disclaimer-title">Disclaimer</h6>
+          <p class="btm-foot">
+            {{FOOTER_DISCLAIMER_TEXT}}
+          </p>
+        </div>
+
+        <p class="footer-show__copy">© {{CURRENT_YEAR}} {{PROJECT_NAME}}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section end here -->
+
+  <!-- mobile section -->
+  <nav class="mobile-section mobile-dock" aria-label="Quick contact">
+    <div class="mobile-dock__bar">
+      <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal1" class="mobile-dock__btn mobile-dock__btn--enquire" title="Enquire Now">
+        <span class="mobile-dock__pulse" aria-hidden="true"></span>
+        <span class="mobile-dock__icon" aria-hidden="true">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"></path>
+          </svg>
+        </span>
+        <span class="mobile-dock__label">Enquire</span>
+      </a>
+      <a href="{{PHONE_TEL}}" class="mobile-dock__btn mobile-dock__btn--call" title="Call us">
+        <span class="mobile-dock__icon" aria-hidden="true">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"></path>
+          </svg>
+        </span>
+        <span class="mobile-dock__label">Call</span>
+      </a>
+      <a id="whatsapp" class="mobile-dock__btn mobile-dock__btn--wa" href="{{WHATSAPP_LINK}}" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+        <span class="mobile-dock__icon" aria-hidden="true">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+          </svg>
+        </span>
+        <span class="mobile-dock__label">WhatsApp</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Enquiry modal start -->
+  <div class="modal fade bptp-modal" id="exampleModal1" tabindex="-1" aria-labelledby="bptpModalBrochureLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered bptp-modal__dialog">
+      <div class="modal-content bptp-modal__content">
+        <div class="bptp-modal__head">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+          <h3 class="modal-title bptp-modal__title" id="bptpModalBrochureLabel">{{PROJECT_NAME}}</h3>
+          <p class="bptp-modal__sub">{{LOCATION_TAGLINE}}</p>
+        </div>
+        <div class="modal-body bptp-modal__body">
+          <form class="form_section" id="form3" action="crm_connect.php" method="POST">
+            <input type="hidden" name="message" id="msgField3" value="Enquiry modal">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Full Name" name="name" id="qSenderName1" aria-label="Full Name" required="">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email Address" name="email" id="qEmailID1" aria-label="Email Address" required="">
+            </div>
+            <div class="form-group">
+              <input type="text" id="phone3" class="form-control phone-input" name="phone" placeholder="Mobile Number" inputmode="numeric" pattern="\d{10}" autocomplete="tel" aria-label="Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required="">
+            </div>
+            <div class="form-group" style="display:flex;align-items:center;gap:10px;">
+              <span id="captchaSum3"></span>
+              <input required type="text" id="captchaAnswer3" class="form-control" placeholder="Answer" style="max-width:110px;">
+              <input type="hidden" name="token" id="captchaToken3">
+            </div>
+            <div class="form-group bptp-modal__submit">
+              <button class="btn dark_btn rounded submit_btn main_button" type="submit">Request a Callback</button>
+            </div>
+            <div class="inp-box bptp-modal__consent">
+              <input type="checkbox" id="consent-form3" checked="">
+              <p class="inp-txt">I authorize company representatives to Call, SMS, Email or WhatsApp me about its
+                products and offers. This consent overrides any registration for DNC/NDNC.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Enquiry modal end -->
+
+  <!-- Auto on-load modal start -->
+  <div class="modal fade bptp-modal bptp-modal--wide" id="onload1" tabindex="-1" aria-labelledby="bptpModalOnloadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered bptp-modal__dialog bptp-modal__dialog--wide">
+      <div class="modal-content bptp-modal__content">
+        <div class="modal-body bptp-modal__body bptp-modal__body--split">
+          <div class="row bptp-modal__split">
+            <div class="img_div col-md-6 bptp-modal__visual">
+              <img class="imgPop" src="assets/img/{{HERO_FIRST_IMAGE}}" alt="{{PROJECT_NAME}} {{LOCATION_TAGLINE}}">
+              <span class="bptp-modal__visual-cap">{{PROJECT_NAME}}</span>
+            </div>
+            <div class="right_col col-md-6 bptp-modal__form-col">
+              <div class="bptp-modal__head bptp-modal__head--inline">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+                <h3 class="modal-title bptp-modal__title" id="bptpModalOnloadLabel">Interested
+                  in<br>{{PROJECT_NAME}}?</h3>
+                <p class="bptp-modal__sub">{{LOCATION_TAGLINE}} — share your details for a callback</p>
+              </div>
+              <form class="form_section" id="form5" action="crm_connect.php" method="POST">
+                <input type="hidden" name="message" id="msgField5" value="On-load popup enquiry">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Full Name" name="name" id="qSenderName6" aria-label="Full Name" required="">
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Email Address" name="email" id="qEmailID6" aria-label="Email Address" required="">
+                </div>
+                <div class="form-group">
+                  <input type="text" id="phone5" class="form-control phone-input" name="phone" placeholder="Mobile Number" inputmode="numeric" pattern="\d{10}" autocomplete="tel" aria-label="Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required="">
+                </div>
+                <div class="form-group" style="display:flex;align-items:center;gap:10px;">
+                  <span id="captchaSum5"></span>
+                  <input required type="text" id="captchaAnswer5" class="form-control" placeholder="Answer" style="max-width:110px;">
+                  <input type="hidden" name="token" id="captchaToken5">
+                </div>
+                <div class="form-group bptp-modal__submit">
+                  <button class="btn dark_btn rounded submit_btn main_button" type="submit">Request a
+                    Callback</button>
+                </div>
+                <div class="inp-box bptp-modal__consent">
+                  <input type="checkbox" id="consent-form5" checked="">
+                  <p class="inp-txt">I authorize company representatives to Call, SMS, Email or WhatsApp me about
+                    its products and offers. This consent overrides any registration for DNC/NDNC.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Auto on-load modal end -->
+
+  <!-- WhatsApp floating icon -->
+  <a href="{{WHATSAPP_LINK}}" target="_blank" rel="noopener noreferrer" class="floating-whatsapp">
+    <img src="assets/img/whatsapp.png" alt="WhatsApp" class="imgwhatsapp">
+  </a>
+  <!-- WhatsApp floating icon end -->
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+    // Restrict phone fields to digits only, max 10 characters
+    document.querySelectorAll(".phone-input").forEach((input) => {
+      input.addEventListener("input", () => {
+        input.value = input.value.replace(/\D/g, "").slice(0, 10);
+      });
+    });
+
+    // Restrict name fields to letters and spaces only
+    document.addEventListener("input", (e) => {
+      if (e.target && e.target.name === "name") {
+        e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $(".nav-link").on("click", function (e) {
+        var target = this.hash;
+        if (!target) return;
+
+        e.preventDefault();
+        var $target = $(target);
+        if (!$target.length) return;
+
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          $("header .navbar-nav .nav-link").removeClass("active");
+          $(this).addClass("active");
+        }
+
+        var targetOffset = $target.offset().top - 96;
+        $("html, body").stop().animate({ scrollTop: targetOffset }, 400, "swing", function () {
+          window.location.hash = target;
+          if (typeof window.initDesktopScrollspy === "function") {
+            window.initDesktopScrollspy();
+          }
+        });
+      });
+
+      $(".nav-item").click(function () {
+        $("body").removeClass("mobile-open");
+      });
+    });
+  </script>
+
+  <!-- Show the on-load enquiry modal automatically after 2 seconds -->
+  <script>
+    setTimeout(function () {
+      $("#onload1").modal("show");
+    }, 2000);
+  </script>
+
+  <!-- Simple math captcha (vanilla JS) — token consumed by crm_connect.php -->
+  <script>
+    (function () {
+      function initCaptcha(idx) {
+        var sumEl = document.getElementById("captchaSum" + idx);
+        var answerEl = document.getElementById("captchaAnswer" + idx);
+        var tokenEl = document.getElementById("captchaToken" + idx);
+        if (!sumEl || !answerEl || !tokenEl) return;
+
+        var num1 = Math.floor(Math.random() * 9) + 1;
+        var num2 = Math.floor(Math.random() * 9) + 1;
+        sumEl.textContent = num1 + " + " + num2 + " =";
+
+        function refreshToken() {
+          tokenEl.value = btoa(num1 + "__s__" + num2 + "__s__" + answerEl.value);
+        }
+        answerEl.addEventListener("input", refreshToken);
+        refreshToken();
+      }
+      [1, 2, 3, 5].forEach(initCaptcha);
+    })();
+  </script>
+
+  <!-- Form submission: everything now goes to crm_connect.php only -->
+  <script>
+    (function () {
+      function wireFormSubmission(formId) {
+        var form = document.getElementById(formId);
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Guard against double submits (double-click, etc.)
+          if (form.dataset.submitting === "true") return;
+          form.dataset.submitting = "true";
+
+          var submitBtns = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+          var labelByBtn = new Map();
+
+          submitBtns.forEach(function (btn) {
+            labelByBtn.set(btn, "innerText" in btn ? btn.innerText : (btn.value || ""));
+            btn.disabled = true;
+            if ("innerText" in btn) btn.innerText = "Sending...";
+            else if ("value" in btn) btn.value = "Sending...";
+          });
+
+          function unlockFormOnError() {
+            form.dataset.submitting = "false";
+            submitBtns.forEach(function (btn) {
+              btn.disabled = false;
+              var t = labelByBtn.get(btn);
+              if (t == null) return;
+              if ("innerText" in btn) btn.innerText = t;
+              else if ("value" in btn) btn.value = t;
+            });
+          }
+
+          var formData = new FormData(form);
+          formData.set("page_url", window.location.href);
+          formData.set("submitted_at", new Date().toISOString());
+
+          fetch("crm_connect.php", {
+            method: "POST",
+            body: formData
+          })
+            .then(function (response) {
+              if (!response.ok) throw new Error("Request failed");
+              window.location.href = "thanks.html";
+            })
+            .catch(function () {
+              alert("Something went wrong. Please try again.");
+              unlockFormOnError();
+            });
+        });
+      }
+
+      ["form1", "form2", "form3", "form5"].forEach(wireFormSubmission);
+    })();
+  </script>
+
+</body>
+
+</html>

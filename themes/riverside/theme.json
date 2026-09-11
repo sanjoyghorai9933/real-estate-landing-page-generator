@@ -1,0 +1,22 @@
+{
+  "id": "riverside",
+  "name": "Riverside Residences",
+  "tagline": "Content-rich, image-led luxury residences microsite",
+  "description": "Full-bleed hero carousel with an inline enquiry form, numbered highlights strip, masonry amenities grid, price cards, floor-plan & master-plan showcases, gallery lightbox, virtual tour embed, location/connectivity panel, and about-the-developer — with lead capture wired to four separate forms (hero, contact section, enquiry modal, on-load popup).",
+  "sections": ["Hero Slider", "Overview", "Highlights", "Amenities", "Price List", "Floor Plan", "Master Plan", "Gallery", "Virtual Tour", "Location", "About Developer", "Contact"],
+  "navigation": [
+    { "label": "Highlight", "href": "#highlight", "section": "highlight" },
+    { "label": "Amenities", "href": "#amenities", "section": "amenities" },
+    { "label": "Price List", "href": "#price-list", "section": "price" },
+    { "label": "Floor Plan", "href": "#floor-plan", "section": "floorplan" },
+    { "label": "Gallery", "href": "#gallery", "section": "gallery" },
+    { "label": "Location", "href": "#location", "section": "location" },
+    { "label": "Contact Us", "href": "#contact-us" }
+  ],
+  "colors": {
+    "primary": "#956543",
+    "secondary": "#1a1a1a"
+  },
+  "thumbnail": "thumbnail.svg",
+  "entry": "form.js"
+}

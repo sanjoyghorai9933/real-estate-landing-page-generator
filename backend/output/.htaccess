@@ -1,0 +1,5 @@
+Require all denied
+
+# Apache 2.2 fallback
+Order deny,allow
+Deny from all

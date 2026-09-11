@@ -1,0 +1,160 @@
+/* themes/palm-estate/form.css — this theme's own form styling.
+   Squared corners + dark teal accent, deliberately distinct from the
+   other two themes' admin forms. */
+:root {
+    --peP: #0c5848;
+    --peInk: #1a1a1a;
+    --peMuted: #757575;
+    --peBorder: #e0e0e0;
+    --peBg: #fafafa;
+}
+#palmForm, #pe_successScreen { font-family: Arial, Helvetica, sans-serif; color: var(--peInk); }
+.pe-card {
+    background: #fff;
+    border: 1px solid var(--peBorder);
+    border-left: 4px solid var(--peP);
+    padding: 20px 20px 22px;
+    margin-bottom: 14px;
+}
+.pe-card h2 {
+    font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+    margin: 0 0 14px; display: flex; align-items: center; gap: 10px;
+}
+.pe-card h2 .pe-num {
+    background: var(--peP); color: #fff; width: 22px; height: 22px;
+    font-size: 11.5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.pe-hint { font-size: 12.5px; color: var(--peMuted); margin: -6px 0 10px; }
+.pe-field { margin-bottom: 12px; }
+.pe-field label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px; color: #444; text-transform: uppercase; letter-spacing: 0.2px; }
+#palmForm input[type="text"],
+#palmForm input[type="tel"],
+#palmForm input[type="email"],
+#palmForm textarea {
+    width: 100%; padding: 11px 12px; border: 1px solid var(--peBorder); border-radius: 0;
+    font-size: 14px; font-family: inherit; background: #fff; color: var(--peInk);
+}
+#palmForm textarea { min-height: 64px; resize: vertical; }
+#palmForm input:focus, #palmForm textarea:focus { outline: none; border-color: var(--peP); }
+.pe-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pe-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media (max-width: 620px) { .pe-row2, .pe-row3 { grid-template-columns: 1fr; } }
+
+.pe-upload-box {
+    display: block; border: 1.5px dashed var(--peBorder); padding: 14px;
+    text-align: center; cursor: pointer; position: relative; overflow: hidden;
+}
+.pe-upload-box:hover { border-color: var(--peP); background: #f4f9f7; }
+.pe-upload-box input { display: none; }
+.pe-upload-box .pe-label { font-size: 13px; font-weight: 700; }
+.pe-upload-box .pe-req { color: var(--peP); }
+.pe-upload-box .pe-status { font-size: 11.5px; color: var(--peMuted); margin-top: 4px; word-break: break-all; }
+.pe-upload-box img.pe-thumb { width: 100%; height: 90px; object-fit: cover; margin-bottom: 8px; }
+
+.pe-tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pe-tag-list .pe-tag {
+    background: #f1f6f4; border: 1px solid var(--peBorder); padding: 6px 12px;
+    font-size: 12.5px; display: flex; align-items: center; gap: 6px;
+}
+.pe-tag-list .pe-tag button { background: none; border: none; color: #999; cursor: pointer; font-size: 13px; }
+
+#palmForm input#pe_amenityInput {
+    width: 100%; padding: 11px 12px; border: 1px solid var(--peBorder);
+    font-size: 14px; font-family: inherit;
+}
+
+.pe-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+@media (max-width: 560px) { .pe-gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+.pe-gallery-grid .pe-gitem { position: relative; border: 1px solid var(--peBorder); }
+.pe-gallery-grid .pe-gitem img { width: 100%; height: 80px; object-fit: cover; display: block; }
+.pe-gallery-grid .pe-gitem .pe-gremove {
+    position: absolute; top: 4px; right: 4px; background: rgba(255,255,255,0.9); border: none;
+    width: 20px; height: 20px; font-size: 12px; cursor: pointer; color: #c0392b;
+}
+
+.pe-color-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pe-color-field { border: 1px solid var(--peBorder); padding: 10px; text-align: center; background: var(--peBg); }
+.pe-color-field label { font-size: 12px; margin-bottom: 8px; }
+.pe-color-field input[type="color"] { width: 100%; height: 40px; border: 1px solid var(--peBorder); padding: 2px; cursor: pointer; background: #fff; }
+
+.pe-error-msg {
+    display: none; background: #fdecea; color: #b23b3b; border: 1px solid #f3c6c1;
+    padding: 12px 14px; font-size: 13px; margin-bottom: 14px;
+}
+.pe-submit-btn {
+    display: block; width: 100%; background: var(--peP); color: #fff; border: none;
+    padding: 15px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    cursor: pointer; text-align: center; text-decoration: none;
+}
+.pe-submit-btn:disabled { opacity: .6; cursor: default; }
+
+#pe_successScreen { text-align: center; padding: 40px 16px; }
+#pe_successScreen .pe-check {
+    width: 60px; height: 60px; border-radius: 50%; background: var(--peP); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 18px;
+}
+#pe_successScreen h2 { font-size: 20px; margin: 0 0 8px; }
+#pe_successScreen p { color: var(--peMuted); font-size: 14px; }
+#pe_successScreen .pe-ref { font-weight: 700; color: var(--peInk); }
+#pe_successScreen .pe-submit-btn { margin-top: 14px; max-width: 320px; margin-left: auto; margin-right: auto; }
+.pe-links { margin-top: 14px; }
+.pe-link-btn {
+    background: none; border: 1px solid var(--peBorder); padding: 10px 16px;
+    color: var(--peP); font-weight: 700; font-size: 13px; cursor: pointer; margin: 0 6px; text-transform: uppercase;
+}
+.pe-link-btn.pe-underline { border: none; text-decoration: underline; }
+
+/* ---------- Section picker (nav-driven show/hide) ---------- */
+.pe-section-picker {
+    position: relative;
+    margin-bottom: 14px;
+}
+.pe-section-picker-btn {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px solid var(--peBorder);
+    border-left: 4px solid var(--peP);
+    border-radius: 0;
+    padding: 14px 15px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--peInk);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: inherit;
+}
+.pe-section-picker-btn .pe-chev { transition: transform 0.2s; color: var(--peP); }
+.pe-section-picker-btn.pe-open .pe-chev { transform: rotate(180deg); }
+.pe-section-picker-panel {
+    display: none;
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(100% + 4px);
+    background: #fff;
+    border: 1px solid var(--peBorder);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    padding: 6px;
+    z-index: 20;
+}
+.pe-section-picker-panel.pe-open { display: block; }
+.pe-section-picker-panel label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--peInk);
+    padding: 9px 8px;
+    margin: 0;
+    cursor: pointer;
+}
+.pe-section-picker-panel label:hover { background: var(--peBg); }
+.pe-section-picker-panel input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--peP); }
+.pe-section-picker-panel .pe-locked { opacity: 0.6; cursor: not-allowed; }
+.pe-section-hidden { display: none !important; }

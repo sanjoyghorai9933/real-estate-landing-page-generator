@@ -1,0 +1,373 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<title>{{PAGE_TITLE}}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+<meta name="description" content="{{PAGE_TITLE}}"/>
+<meta name="keywords" content="{{PROJECT_NAME}}">
+<link rel="stylesheet" href="assets/css/animate.css">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="" rel="preconnect">
+<link rel="stylesheet" href="assets/css/bootsnav.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+<!-- Google tag (gtag.js) — filled in per-project, blank if not configured -->
+{{GTAG_HEAD_SNIPPET}}
+<style>
+/* Theme color overrides — driven by the Colors step on the request form */
+:root { --tPrimary: {{COLOR_PRIMARY}}; --tSecondary: {{COLOR_SECONDARY}}; }
+.text-deep-pink, .builder li b, a.text-link-deep-pink, a.text-link-deep-pink i { color: var(--tPrimary) !important; }
+.btn.btn-deep-pink { background: var(--tPrimary) !important; border-color: var(--tPrimary) !important; }
+.btn.btn-transparent-deep-pink { border-color: var(--tPrimary) !important; color: var(--tPrimary) !important; }
+.feature li i { color: var(--tPrimary) !important; }
+.offer { border-color: var(--tPrimary) !important; }
+.dfooter li:hover { background: var(--tPrimary) !important; }
+.bg-g { background: var(--tSecondary) !important; }
+header nav.navbar .navbar-nav>li>a.active, nav.navbar.bootsnav ul.nav>li>a.active { color: var(--tPrimary) !important; }
+.mobilecall #a3 { background: var(--tPrimary) !important; }
+#enqSubmitBtn { background: var(--tPrimary) !important; border-color: var(--tPrimary) !important; }
+</style>
+</head>
+<body>
+
+<div id="bkgOverlay" class="backgroundOverlay"></div>
+
+<header>
+<nav class="navbar navbar-default bootsnav navbar-fixed-top no-full header-light-transparent on menu-center">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="index.html">
+<img src="assets/img/logo.png" class="logo" alt="{{PROJECT_NAME}}" style="max-height:50px;width:auto;">
+</a>
+</div>
+<div class="collapse navbar-collapse" id="navbar-menu">
+<ul class="nav navbar-nav navbar-right">
+<li><a href="#about">Overview</a></li>
+<!--SECTION:AMENITIES_START-->
+<li><a href="#amenities">Amenities</a></li>
+<!--SECTION:AMENITIES_END-->
+<!--SECTION:GALLERY_START-->
+<li><a href="#photo-gallery">Gallery</a></li>
+<!--SECTION:GALLERY_END-->
+<li><a href="#location">Location</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a data-toggle="modal" data-target="#enqModal" data-enq-source="Brochure" href="#" class="btn btn-medium btn-deep-pink headbtn"><i class="sbag fa fa-file no-margin-left" aria-hidden="true"></i><span class="xs-display-none">Brochure</span></a></li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+
+<!-- ============ Unified enquiry modal (replaces the original third-party embed) ============ -->
+<div id="enqModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-body bg-g">
+<div class="row">
+<div class="col-md-6 col-xs-12 text-center">
+<img class="margin-50px-top" src="assets/img/media/popup.png" style="max-width:100%;">
+</div>
+<div class="col-md-6 col-xs-12">
+<div class="padding-20px-all xs-padding-20px-lr">
+<h5 class="text-left font-weight-700 line-height-1 text-white margin-15px-bottom no-margin-top">Enquire<br>{{PROJECT_NAME}}</h5>
+<img src="assets/img/logo.png" class="tag" alt="{{PROJECT_NAME}} developer logo">
+<form id="enqForm" action="crm_connect.php" method="POST" class="margin-20px-top">
+<input type="hidden" name="source" id="enqSourceField" value="Enquiry">
+<div class="form-group"><input required type="text" name="name" placeholder="Full Name" class="form-control"></div>
+<div class="form-group"><input required type="text" name="phone" placeholder="Phone Number" class="form-control"></div>
+<div class="form-group"><input required type="email" name="email" placeholder="Email Address" class="form-control"></div>
+<input type="hidden" name="message" id="enqMessageField" value="Site visit / brochure request">
+<div class="form-group" style="display:flex;align-items:center;gap:10px;">
+<span id="enqCaptchaSum" style="color:#fff;font-weight:700;"></span>
+<input required type="text" id="enqCaptchaAnswer" class="form-control" placeholder="Answer" style="max-width:110px;">
+<input type="hidden" name="token" id="enqCaptchaToken">
+</div>
+<button type="submit" id="enqSubmitBtn" class="btn btn-medium btn-deep-pink" style="width:100%;">Submit</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+<section class="no-padding main-slider height-100 xs-height-600px wow cover-background fadeIn" style="background-image:url('assets/img/{{HERO_IMAGE}}');">
+<div class="container-fluid">
+<div class="row equalize xs-equalize-auto">
+<div class="col-md-5 col-sm-6 col-xs-12 height-700px xs-height-250px">
+<div class="display-table width-100 height-100 hidden-sm hidden-xs">
+<div class="display-table-cell vertical-align-middle text-center padding-twelve-all xs-padding-five-all">
+<span class="slidesubt">{{PROJECT_NAME}}</span>
+<h6 class="slidemaint">{{LOCATION_TAGLINE}}</h6>
+<p class="slidet">{{HERO_SUBTITLE}}</p>
+<h6 class="tick blinking">Starting Price <i class="fa fa-rupee"></i> {{PRICE_TEXT}}</h6>
+</div>
+</div>
+</div>
+<div class="col-md-7 col-sm-6 col-xs-12 no-padding-lr"></div>
+</div>
+</div>
+</section>
+
+<section class="no-padding overflow-visible no-margin">
+<div class="container">
+<div class="row">
+<div class="col-md-8"></div>
+<div class="col-md-4" style="padding:0">
+<div class="bg-g formpos padding-20px-all xs-padding-20px-lr">
+<div class="row">
+<div class="col-md-12">
+<div class="no-margin-lr">
+<div class="display-table width-100 height-100 hidden-lg hidden-md">
+<div class="display-table-cell vertical-align-middle text-center padding-twelve-all xs-padding-five-all">
+<span class="slidesubt">{{PROJECT_NAME}}</span>
+<h6 class="slidemaint">{{LOCATION_TAGLINE}}</h6>
+<p class="slidet">{{HERO_SUBTITLE}}</p>
+<h6 class="tick blinking">Starting Price <i class="fa fa-rupee"></i> {{PRICE_TEXT}}</h6>
+</div>
+</div>
+<br>
+<h5 class="text-center tag-img font-weight-700 line-height-1 text-white margin-15px-bottom no-margin-top">Get a Callback</h5>
+<img src="assets/img/logo.png" class="tag hidden-xs hidden-sm" alt="{{PROJECT_NAME}} developer logo">
+<img src="assets/img/logo.png" class="tag hidden-lg hidden-md" alt="{{PROJECT_NAME}} developer logo">
+</div>
+</div>
+<div class="col-md-12" style="padding:0 20px 20px;">
+<form id="bannerForm" action="crm_connect.php" method="POST">
+<input type="hidden" name="source" value="Banner">
+<div class="form-group"><input required type="text" name="name" placeholder="Full Name" class="form-control"></div>
+<div class="form-group"><input required type="text" name="phone" placeholder="Phone Number" class="form-control"></div>
+<div class="form-group"><input required type="email" name="email" placeholder="Email Address" class="form-control"></div>
+<input type="hidden" name="message" value="Banner callback request">
+<div class="form-group" style="display:flex;align-items:center;gap:10px;">
+<span id="bannerCaptchaSum" style="color:#fff;font-weight:700;"></span>
+<input required type="text" id="bannerCaptchaAnswer" class="form-control" placeholder="Answer" style="max-width:110px;">
+<input type="hidden" name="token" id="bannerCaptchaToken">
+</div>
+<button type="submit" class="btn btn-medium btn-deep-pink" style="width:100%;">Request Callback</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about" class="wow no-padding-bottom fadeIn">
+<div class="container">
+<div class="row">
+<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 text-center">
+<h1 class="main-font text-black font-weight-800 letter-spacing-minus-1 no-margin-tb">{{PROJECT_NAME}}</h1>
+<h3 class="text-deep-pink font-weight-300 letter-spacing-1 margin-10px-top margin-25px-bottom">{{LOCATION_TAGLINE}}</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 text-center">
+<img class="xs-margin-30px-bottom" src="assets/img/{{ABOUT_IMAGE}}">
+</div>
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 xs-text-center">
+<p class="font-weight-400 text-dark-gray margin-one-top margin-seven-bottom">{{ABOUT_TEXT}}</p>
+<ul class="feature">
+<li><i class="fa fa-bank"></i>TYPE<b>{{FEATURE_TYPE}}</b></li>
+<li><i class="fa fa-map-marker"></i>LOCATION<b>{{FEATURE_LOCATION}}</b></li>
+<li><i class="fa fa-rupee"></i>PRICE<b>{{PRICE_TEXT}}</b></li>
+<li><i class="fa fa-clock-o"></i>POSSESSION<b>{{FEATURE_POSSESSION}}</b></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!--SECTION:AMENITIES_START-->
+<section id="amenities" class="wow no-padding-bottom fadeIn">
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-sm-12 col-xs-12">
+<h5 class="text-uppercase letter-spacing-2 text-dark-gray margin-10px-bottom">Amenities</h5>
+<h3 class="text-black font-weight-800 text-uppercase letter-spacing-1 no-margin-top margin-25px-bottom"><span class="text-deep-pink">{{PROJECT_NAME}}</span></h3>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<ul class="builder">
+{{AMENITIES_COL1}}
+</ul>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<ul class="builder">
+{{AMENITIES_COL2}}
+</ul>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<ul class="builder">
+{{AMENITIES_COL3}}
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--SECTION:AMENITIES_END-->
+
+<!--SECTION:LOCATION_START-->
+<section id="location" class="wow no-padding-bottom fadeIn">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-sm-12 col-xs-12">
+<h5 class="text-uppercase letter-spacing-2 text-dark-gray margin-10px-bottom">Location</h5>
+<h3 class="text-black font-weight-800 text-uppercase letter-spacing-1 no-margin-top margin-25px-bottom"><span class="text-deep-pink">{{LOCATION_TAGLINE}}</span></h3>
+</div>
+<div class="col-md-10 col-sm-12 col-xs-12">
+<div class="photos">
+<div class="item"><a href="assets/img/{{LOCATION_IMAGE}}" class="js-lightbox" data-lightbox="location"><img class="img-fluid" src="assets/img/{{LOCATION_IMAGE}}"></a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--SECTION:LOCATION_END-->
+
+<!--SECTION:GALLERY_START-->
+<section class="photo-gallery no-padding-bottom" id="photo-gallery">
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-sm-12 col-xs-12 left-col text-center">
+<h5 class="text-uppercase letter-spacing-2 text-dark-gray margin-10px-bottom">Photo Gallery</h5>
+<div class="row photos">
+{{GALLERY_ITEMS}}
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--SECTION:GALLERY_END-->
+
+<section class="wow padding-100px-top no-padding-bottom fadeIn">
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-sm-12 left-col col-xs-12">
+<div class="offer xs-text-center">
+<div class="width-60 xs-width-100">
+<h3 class="font-weight-700 text-deep-pink no-margin-tb">{{PROJECT_NAME}} Brochure</h3>
+<h6 class="font-weight-400 text-black no-margin-tb xs-margin-10px-tb" style="color:#000">Download Full Details, Floor Plans, Specifications, Price etc.</h6>
+</div>
+<div class="width-30 xs-width-100 fright">
+<a data-toggle="modal" data-target="#enqModal" data-enq-source="Brochure" href="#" class="btn cusbtn btn-large btn-black md-margin-15px-bottom sm-margin-lr-auto">Brochure</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!--SECTION:BUILDER_START-->
+<section id="builder" class="wow no-padding-bottom fadeIn">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-sm-12 col-xs-12">
+<img src="assets/img/{{BUILDER_IMAGE}}">
+</div>
+<div class="col-md-6 col-sm-12 col-xs-12">
+<h5 class="text-uppercase letter-spacing-2 text-dark-gray margin-10px-bottom">{{BUILDER_HEADING}}</h5>
+<p>{{BUILDER_TEXT}}</p>
+</div>
+</div>
+</div>
+</section>
+<!--SECTION:BUILDER_END-->
+
+<section id="contact" class="wow no-padding-bottom fadeIn">
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-sm-12 col-xs-12 text-center">
+<h5 class="text-uppercase letter-spacing-2 text-dark-gray margin-10px-bottom">Contact</h5>
+<h3 class="text-deep-pink font-weight-800 text-uppercase letter-spacing-1 no-margin-top margin-25px-bottom"><span class="text-black">Get in Touch</span><br>with {{PROJECT_NAME}}</h3>
+<div class="contbox margin-20px-bottom">
+<h3 class="alt-font font-weight-700 visit"><a href="{{PHONE_TEL}}">Call {{PHONE_DISPLAY}}</a></h3>
+<a data-toggle="modal" data-target="#enqModal" data-enq-source="Site Visit" href="#" class="btn btn-large btn-black md-margin-15px-bottom sm-margin-lr-auto">Book A Site Visit</a>
+</div>
+<ul class="dfooter">
+<li><a href="#" data-toggle="modal" data-target="#enqModal" data-enq-source="Floor Plans">{{PROJECT_NAME}} Floor Plans Download</a></li>
+<li><a href="#" data-toggle="modal" data-target="#enqModal" data-enq-source="Master Plan">{{PROJECT_NAME}} Plan Download</a></li>
+<li><a href="#" data-toggle="modal" data-target="#enqModal" data-enq-source="Brochure">{{PROJECT_NAME}} Brochure Download</a></li>
+<li><a href="#" data-toggle="modal" data-target="#enqModal" data-enq-source="Price List">{{PROJECT_NAME}} PriceList Download</a></li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="conbox">
+<img src="assets/img/logo.png" alt="{{PROJECT_NAME}} developer logo">
+<p class="text-black">{{ADDRESS_BLOCK}}</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer id="site-footer" class="footer-clean padding-one-top padding-two-bottom xs-padding-30px-tb">
+<div class="footer-widget-area padding-40px-bottom xs-padding-30px-bottom"><div class="container"></div></div>
+<div class="container">
+<div class="border-color-extra-light-gray border-top padding-50px-top xs-padding-10px-top">
+<div class="row">
+<div class="col-md-12 col-xs-12 text-right text-small alt-font text-center xs-padding-40px-bottom text-medium-gray">&COPY; <span id="palmYear"></span> <a href="index.html" class="text-dark-gray">{{PROJECT_NAME}}</a></div>
+</div>
+</div>
+</div>
+</footer>
+
+<div class="mobilecall">
+<ul>
+<li><a href="{{PHONE_TEL}}" id="a1" class="stbtn alt-font"><i class="fa fa-phone"></i> Call Us</a></li>
+<li><a href="#" data-toggle="modal" data-target="#enqModal" data-enq-source="Site Visit" id="a3" class="stbtn alt-font"><i class="fa fa-map-marker"></i> Site Visit</a></li>
+</ul>
+</div>
+<a class="scroll-top-arrow" href="javascript:void(0);"><i class="fa fa-arrow-up"></i></a>
+
+<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/bootsnav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+<script type="text/javascript" src="assets/js/vendor-shim.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+<script>
+document.getElementById('palmYear').textContent = new Date().getFullYear();
+
+// Track which CTA opened the modal, so the lead notes which source it came from
+document.querySelectorAll('[data-enq-source]').forEach(function (el) {
+    el.addEventListener('click', function () {
+        var src = el.getAttribute('data-enq-source') || 'Enquiry';
+        document.getElementById('enqSourceField').value = src;
+        document.getElementById('enqMessageField').value = src + ' request';
+    });
+});
+
+// Simple math captcha (vanilla JS) — token consumed by crm_connect.php
+function wireMathCaptcha(sumId, answerId, tokenId) {
+    var num1 = Math.floor(Math.random() * 90) + 10;
+    var num2 = Math.floor(Math.random() * 9) + 1;
+    var sumEl = document.getElementById(sumId);
+    if (sumEl) sumEl.textContent = num1 + ' + ' + num2 + ' =';
+    var answerInput = document.getElementById(answerId);
+    var tokenInput = document.getElementById(tokenId);
+    if (answerInput) {
+        answerInput.addEventListener('input', function () {
+            tokenInput.value = btoa(num1 + '__s__' + num2 + '__s__' + answerInput.value);
+        });
+    }
+}
+wireMathCaptcha('enqCaptchaSum', 'enqCaptchaAnswer', 'enqCaptchaToken');
+wireMathCaptcha('bannerCaptchaSum', 'bannerCaptchaAnswer', 'bannerCaptchaToken');
+</script>
+
+</body>
+</html>

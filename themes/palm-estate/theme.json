@@ -1,0 +1,20 @@
+{
+  "id": "palm-estate",
+  "name": "Palm Estate",
+  "tagline": "Bold, image-led luxury villa microsite",
+  "description": "Full-bleed hero banner, sticky callback box, amenities grid, location photo, gallery, about-the-builder, and a unified enquiry modal reachable from every CTA on the page.",
+  "sections": ["Hero Banner", "About", "Amenities", "Location", "Gallery", "About Builder", "Contact"],
+  "navigation": [
+    { "label": "Overview", "href": "#about" },
+    { "label": "Amenities", "href": "#amenities" },
+    { "label": "Gallery", "href": "#photo-gallery" },
+    { "label": "Location", "href": "#location" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "colors": {
+    "primary": "#0c5848",
+    "secondary": "#000000"
+  },
+  "thumbnail": "thumbnail.svg",
+  "entry": "form.js"
+}
