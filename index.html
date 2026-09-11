@@ -3,64 +3,81 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>New Landing Page Request</title>
+<title>Landing Page Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="core/app.css" />
 </head>
 <body>
-
 <header class="g-topbar" id="gTopbar">
-    <div>
+    <div class="g-brand-wrap">
         <div class="g-brand">Landing Page Generator</div>
         <div class="g-sub" id="gThemeSub">Choose a theme to get started</div>
     </div>
-    <button type="button" class="g-my-pages" id="gMyPagesBtn">My Landing Pages</button>
-    <button type="button" class="g-change-theme" id="gChangeThemeBtn">&larr; Change theme</button>
+    <nav class="g-top-actions" aria-label="Generator navigation">
+        <button type="button" class="g-my-pages" id="gMyPagesBtn">My Landing Pages</button>
+        <button type="button" class="g-change-theme" id="gChangeThemeBtn">&larr; Change theme</button>
+    </nav>
 </header>
-
 <main class="g-main">
-
-    <!-- ============ STEP 1: Theme selection (always the first step) ============ -->
     <section id="gSelectScreen">
-        <div class="g-select-head">
-            <h1>Pick a landing page theme</h1>
-            <p>Each theme has its own layout, sections and fields. You'll only be asked for what that theme actually needs.</p>
+        <div class="g-stepper" aria-label="Generator progress">
+            <span class="g-step active"><b>1</b> Choose theme</span>
+            <span class="g-step-line"></span>
+            <span class="g-step"><b>2</b> Build page</span>
+            <span class="g-step-line"></span>
+            <span class="g-step"><b>3</b> Generate</span>
         </div>
-        <div class="g-theme-grid" id="gThemeGrid">
-            <div class="g-loading">Loading themes&hellip;</div>
+        <div class="g-select-head">
+            <span class="g-eyebrow">START HERE</span>
+            <h1>Choose a theme for your landing page</h1>
+            <p>Pick a design first. The form will then show only the fields that belong to that theme.</p>
+        </div>
+        <div class="g-theme-toolbar">
+            <label class="g-search-wrap">
+                <span aria-hidden="true">⌕</span>
+                <input id="gThemeSearch" type="search" placeholder="Search themes, sections or style…" autocomplete="off" />
+            </label>
+            <span class="g-theme-count" id="gThemeCount" aria-live="polite"></span>
+        </div>
+        <div class="g-theme-grid" id="gThemeGrid" aria-live="polite">
+            <div class="g-loading"><span class="g-spinner"></span> Loading themes…</div>
         </div>
     </section>
-
-    <!-- ============ STEP 2: Theme-specific form + live preview ============ -->
     <section id="gWorkspace" class="g-hidden">
+        <div class="g-stepper" aria-label="Generator progress">
+            <span class="g-step done"><b>✓</b> Choose theme</span>
+            <span class="g-step-line active"></span>
+            <span class="g-step active"><b>2</b> Build page</span>
+            <span class="g-step-line"></span>
+            <span class="g-step"><b>3</b> Generate</span>
+        </div>
         <div class="g-workspace">
             <div class="g-form-col">
                 <div class="g-form-mount" id="gFormMount"></div>
             </div>
-            <div class="g-preview-col">
+            <aside class="g-preview-col" aria-label="Live preview">
                 <div class="g-preview-panel">
-                    <div class="g-preview-label">Live Preview</div>
+                    <div class="g-preview-head">
+                        <div><div class="g-preview-label">LIVE PREVIEW</div><div class="g-preview-title">Your page at a glance</div></div>
+                        <span class="g-live-dot">Live</span>
+                    </div>
                     <div class="g-preview-mock" id="gPreviewMock"></div>
-                    <p class="g-preview-hint">A quick look at your content and colors. The final generated page uses your theme's full design &mdash; download or preview it after you submit.</p>
+                    <p class="g-preview-hint">This is a quick content preview. Your submitted page uses the theme's full design.</p>
                 </div>
-            </div>
+            </aside>
         </div>
     </section>
-
-    <!-- ============ My Landing Pages: list previously generated pages + edit ============ -->
     <section id="gPagesScreen" class="g-hidden">
         <div class="g-select-head">
+            <span class="g-eyebrow">YOUR PROJECTS</span>
             <h1>My Landing Pages</h1>
-            <p>Every landing page you've generated, ready to preview, download, or edit in place.</p>
+            <p>Preview, download, or edit pages you've already generated.</p>
         </div>
         <div id="gPagesMount"></div>
     </section>
-
 </main>
-
 <script type="module" src="core/app.js"></script>
-
 </body>
 </html>
