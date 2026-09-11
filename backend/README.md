@@ -64,6 +64,38 @@ it should not be used as a source of verified property prices, RERA details,
 distances, approvals, unit counts or other legal/commercial facts. Review the
 draft before applying it.
 
+## Property Matrimony lead delivery
+
+The default generated landing page supports the Property Matrimony lead-delivery
+profile. SMTP and CRM secrets are server-side only; they are never embedded in
+the generated HTML or committed to the repository.
+
+Configure the deployment environment with:
+
+```text
+PROPERTY_MATRIMONY_SMTP_SERVER=
+PROPERTY_MATRIMONY_SMTP_PORT=465
+PROPERTY_MATRIMONY_SMTP_SECURE=ssl
+PROPERTY_MATRIMONY_SMTP_USERNAME=
+PROPERTY_MATRIMONY_SMTP_PASSWORD=
+PROPERTY_MATRIMONY_TO_EMAIL=
+PROPERTY_MATRIMONY_CC_EMAIL=
+PROPERTY_MATRIMONY_BCC_EMAIL=
+PROPERTY_MATRIMONY_CRM_ENDPOINT=
+PROPERTY_MATRIMONY_CRM_API_KEY=
+```
+
+The generated `crm_connect.php` sends the lead to the configured CRM endpoint
+with an API key, then sends the lead notification through the configured SMTP
+account. CRM failures are logged without exposing the API key to the visitor;
+SMTP failures are also handled as a controlled redirect instead of printing
+raw SMTP diagnostics.
+
+The CRM request uses the standard Leadrat third-party integration pattern:
+POST JSON with an `API-Key` header. Leadrat documents fields including name,
+mobile, project, notes and email, and documents API-key authentication and
+success/failure responses. urlLeadrat API integration documentationhttps://apidocs.leadrat.com/index.php/docs/technical-documentation-for-crm-api-integration-with-third-party-providers/
+
 ## Adding a new theme
 
 1. Copy the frontend and backend theme folders.
@@ -76,7 +108,8 @@ draft before applying it.
 
 1. Upload the whole project to your hosting account.
 2. Fill each theme's `backend/themes/<id>/assets/` with real fallback assets.
-3. Configure SMTP sender details in each theme's template config.
+3. Configure the Property Matrimony SMTP/CRM environment variables above when
+   using the default client profile.
 4. Ensure `backend/output/` is writable.
 5. Use PHP with the ZipArchive extension enabled.
 6. Set `OPENAI_API_KEY` only as a server environment variable if AI is enabled.
@@ -94,8 +127,9 @@ draft before applying it.
 
 ## Security notes
 
-- Never commit `.env` or real API keys.
+- Never commit `.env` or real API keys/passwords.
 - `backend/ai.php` reads `OPENAI_API_KEY` only from the server environment.
+- Property Matrimony SMTP and CRM credentials are read only from server environment variables.
 - Generated output and theme source should remain protected by server rules.
 - Image uploads should remain limited to the formats accepted by each theme.
 - For public deployments, consider an application-level rate limit or shared
@@ -106,7 +140,8 @@ draft before applying it.
 ## Troubleshooting
 
 - **AI is not configured** → set `OPENAI_API_KEY` in the environment before starting PHP.
-- **AI request fails** → check outbound HTTPS access from PHP/cURL and the API key.
+- **Lead email is not configured** → set the Property Matrimony SMTP and recipient environment variables.
+- **CRM leads are not arriving** → verify the CRM endpoint/API key and outbound HTTPS access from PHP/cURL.
 - **Could not create working directory** → check `backend/output/` permissions.
 - **Unknown or misconfigured theme** → verify the `themeId` and backend theme folder.
 - **Blank/500 response** → inspect the PHP error log; ZipArchive and file permissions are common causes.
